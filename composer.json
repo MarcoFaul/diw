@@ -1,0 +1,32 @@
+{
+  "name": "marcofaul/diw",
+  "description": "@TODO",
+  "license": "MIT",
+  "autoload": {
+    "files": [
+      "src/_includes/CommandLine.php",
+      "src/_includes/Compatibility.php",
+      "src/_includes/Utility.php"
+    ],
+    "psr-4": {
+      "DIW\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=7.2",
+    "illuminate/container": "v8.12.3",
+    "nategood/httpful": "*",
+    "mnapoli/silly": "1.7.2",
+    "symfony/process": "~4.1.0",
+    "sebastian/version": "^2.0.1",
+    "squizlabs/php_codesniffer": "*"
+  },
+  "require-dev": {
+    "mockery/mockery": "1.3.1",
+    "phpunit/phpunit": "~8.5.2"
+  },
+  "bin": [
+    "diw"
+  ],
+  "minimum-stability": "stable"
+}
