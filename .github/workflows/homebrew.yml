@@ -15,6 +15,6 @@ jobs:
         with:
           packageName: "diw"
           templatePath: "Formula/diw.rb"
-          tapRepo: "marcofaul/homebrew-diw"
-          srcRepo: "marcofaul/diw"
+          tapRepo: "MarcoFaul/homebrew-diw"
+          srcRepo: "MarcoFaul/diw"
           authToken: ${{ secrets.AUTH_TOKEN }}
