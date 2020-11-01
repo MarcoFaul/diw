@@ -9,7 +9,6 @@ jobs:
     runs-on: macOS-latest
     steps:
       - name: Release Homebrew Formula
-          if: "!github.event.release.prerelease"
           uses: garden-io/update-homebrew-action@v1
           with:
             packageName: "diw"
