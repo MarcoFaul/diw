@@ -2,14 +2,14 @@ name: Update Homebrew Formula
 
 on:
   release:
-    types: [published]
+    types: [published, edited, released]
 
 jobs:
   homebrew-release:
     runs-on: macOS-latest
     steps:
       - name: Release Homebrew Formula
-          if: github.event.release.prerelease != true
+          if: "!github.event.release.prerelease"
           uses: garden-io/update-homebrew-action@v1
           with:
             packageName: "diw"
