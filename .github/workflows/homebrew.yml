@@ -17,4 +17,4 @@ jobs:
           templatePath: "Formula/diw.rb"
           tapRepo: "MarcoFaul/homebrew-diw"
           srcRepo: "MarcoFaul/diw"
-          authToken: ${{ secrets.GITHUB_TOKEN }}
+          authToken: ${{ secrets.AUTH_TOKEN }}
