@@ -1,8 +1,9 @@
 name: Update Homebrew Formula
 
 on:
-  release:
-    types: [published, edited, released]
+  push:
+    branches:
+      - "main"
 
 jobs:
   homebrew-release:
