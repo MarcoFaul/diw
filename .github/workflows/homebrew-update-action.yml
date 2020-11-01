@@ -6,7 +6,7 @@ on:
 
 jobs:
   homebrew-release:
-    runs-on: macos-latest
+    runs-on: macOS-latest
     steps:
       - name: Release Homebrew Formula
           if: github.event.release.prerelease != true
