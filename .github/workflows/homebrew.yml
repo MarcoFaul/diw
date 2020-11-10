@@ -13,7 +13,5 @@ jobs:
         with:
           homebrew-tap: MarcoFaul/homebrew-diw
           formula-name: diw
-          base-branch: master
-          commit-message: {{formulaName}} {{version}}
         env:
           COMMITTER_TOKEN: ${{ secrets.BREW_TOKEN }}
