@@ -15,8 +15,8 @@ jobs:
           fetch-depth: 0
       - uses: BobAnkh/auto-generate-changelog@master
         with:
-          REPO_NAME: 'BobAnkh/auto-generate-changelog'
-          ACCESS_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          REPO_NAME: 'MarcoFaul/diw'
+          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PATH: '/docs/changelog.md'
           COMMIT_MESSAGE: 'docs(CHANGELOG): update release notes'
           TYPE: 'feat:Feature,fix:Bug Fixes,docs:Documentation,refactor:Refactor,perf:Performance Improvements'
