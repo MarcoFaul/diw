@@ -9,8 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: mislav/bump-homebrew-formula-action@v1
+        if: "!contains(github.ref, '-')" # skip prereleases
         with:
-          # A PR will be sent to github.com/Homebrew/homebrew-core to update this formula:
+          homebrew-tap: MarcoFaul/homebrew-diw
           formula-name: diw
+          base-branch: master
+          commit-message: {{formulaName}} {{version}}
         env:
           COMMITTER_TOKEN: ${{ secrets.BREW_TOKEN }}
