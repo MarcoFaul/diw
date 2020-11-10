@@ -1,0 +1,13 @@
+.sw-cms-el-{FEATURE_NAME} {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+
+  .sw-cms-el-{FEATURE_NAME}-img {
+    filter: blur(3px);
+    width: 100%;
+    height: 100%;
+  }
+}

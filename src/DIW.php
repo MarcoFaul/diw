@@ -10,6 +10,7 @@ if (\file_exists(__DIR__ . '/../vendor/autoload.php')) {
     require __DIR__ . '/../../../autoload.php';
 }
 
+use DIW\Commands\CmsBlockElementGenerator;
 use DIW\Commands\DevCommand;
 use DIW\Commands\DockerShellCommand;
 use DIW\Commands\TestCommand;
@@ -26,6 +27,7 @@ $app = new Application(APP_NAME, version()->getVersion());
 TestCommand::command($app);
 
 # initialise commands
+CmsBlockElementGenerator::command($app);
 DockerShellCommand::command($app);
 DevCommand::command($app);
 UpdateCommand::command($app);

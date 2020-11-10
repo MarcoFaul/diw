@@ -1,0 +1,8 @@
+{% block block_{FEATURE_BLOCK_NAME} %}
+    {% set columns = 1 %}
+
+    <div class="col-12">
+        {% set element = block.slots.getSlot('center') %}
+        {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+    </div>
+{% endblock %}
