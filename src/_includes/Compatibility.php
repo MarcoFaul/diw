@@ -6,7 +6,7 @@
 $inTestingEnvironment = \strpos($_SERVER['SCRIPT_NAME'], 'phpunit') !== false;
 
 if (PHP_OS !== 'Darwin' && ! $inTestingEnvironment) {
-    echo APP_NAME . ' only supports the Mac operating system.'.PHP_EOL;
+    echo APP_NAME . ' only supports the Mac operating system.' . PHP_EOL;
 
     exit(1);
 }
