@@ -1,6 +1,4 @@
 # DIW
 DIW is a CLI utility
 
-
-# Development
-1. composer install
+[Documentation](https://diw-tool.netlify.app)

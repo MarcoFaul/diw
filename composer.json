@@ -23,7 +23,16 @@
   },
   "require-dev": {
     "mockery/mockery": "1.3.1",
-    "phpunit/phpunit": "~8.5.2"
+    "phpunit/phpunit": "~8.5.2",
+    "squizlabs/php_codesniffer": "*",
+    "escapestudios/symfony2-coding-standard": "*",
+    "phpcompatibility/php-compatibility": "*"
+  },
+  "scripts": {
+    "phpcs": "vendor/bin/phpcs --extensions=php/php",
+    "phpcbf": "vendor/bin/phpcbf --extensions=php/php",
+    "post-install-cmd": "\"vendor/bin/phpcs\" --config-set installed_paths vendor/phpcompatibility/php-compatibility,vendor/escapestudios/symfony2-coding-standard",
+    "post-update-cmd" : "\"vendor/bin/phpcs\" --config-set installed_paths vendor/phpcompatibility/php-compatibility,vendor/escapestudios/symfony2-coding-standard"
   },
   "bin": [
     "diw"
