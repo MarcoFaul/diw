@@ -15,3 +15,9 @@ phpcs: ## run phpcs
 
 phpcbf: ## run phpcbf
 	composer run-script phpcbf
+
+doc: ## call docs
+	$(MAKE) -C docs
+
+doc-html: ## Generate html files
+	$(MAKE) -C docs html
