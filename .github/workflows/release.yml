@@ -11,11 +11,6 @@ jobs:
     name: Create Release
     runs-on: ubuntu-latest
     steps:
-      - name: Set version as output variable
-        id: tag_name
-        run: |
-          echo ::set-output name=current_version::${GITHUB_REF#refs/tags/v}
-        shell: bash
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
@@ -26,11 +21,22 @@ jobs:
           PATH: '/CHANGELOG.md'
           COMMIT_MESSAGE: 'docs(CHANGELOG): update release notes'
           TYPE: 'feat:Feature,fix:Bug Fixes,docs:Documentation,refactor:Refactor,perf:Performance Improvements'
+             
+  build:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set version as output variable
+        id: tag_name
+        run: |
+          echo ::set-output name=current_version::${GITHUB_REF#refs/tags/v}
+        shell: bash
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Get Changelog Entry
         id: changelog_reader
         uses: mindsers/changelog-reader-action@v2
         with:
-          validation_depth: 10
           version: v${{ steps.tag_name.outputs.current_version }}
           path: ./CHANGELOG.md
       - name: Create Release
