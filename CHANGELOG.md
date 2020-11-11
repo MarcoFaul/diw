@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [v0.0.4.7](https://github.com/MarcoFaul/diw/releases/tag/v0.0.4.7) - 2020-11-11 18:57:36
+
+
+
 ## [v0.0.4.6](https://github.com/MarcoFaul/diw/releases/tag/v0.0.4.6) - 2020-11-11 18:54:31
 
 
