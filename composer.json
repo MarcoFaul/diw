@@ -37,7 +37,7 @@
     "post-update-cmd" : "\"vendor/bin/phpcs\" --config-set installed_paths vendor/phpcompatibility/php-compatibility,vendor/escapestudios/symfony2-coding-standard"
   },
   "bin": [
-    "diw"
+    "bin/diw"
   ],
   "minimum-stability": "stable"
 }
