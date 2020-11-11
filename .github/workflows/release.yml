@@ -18,6 +18,8 @@ jobs:
         shell: bash
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - uses: BobAnkh/auto-generate-changelog@master
         with:
           REPO_NAME: 'MarcoFaul/diw'
