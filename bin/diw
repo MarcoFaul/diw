@@ -22,14 +22,14 @@ fi
 # Diw CLI script which is written in PHP. Will use PHP to do it.
 if [ ! -f "$DIR/src/diw.php" ]
 then
-    DIR=$(php -r "echo realpath('$DIR/../marcofaul/diw');")
+    DIR=$(php -r "echo realpath('$DIR/../../marcofaul/diw');")
 fi
 
-if [[ "$EUID" -ne 0 ]]
-then
-    sudo $SOURCE "$@"
-    exit
-fi
+#if [[ "$EUID" -ne 0 ]]
+#then
+    #sudo $SOURCE "$@"
+    #exit
+#fi
 
 # If the command is the "share" command we will need to resolve out any
 # symbolic links for the site. Before starting Ngrok, we will fire a
@@ -37,7 +37,7 @@ fi
 if [[ "$1" = "share" ]]
 then
     HOST="${PWD##*/}"
-    DOMAIN=$(php "$DIR/src/DIW.php" domain)
+    DOMAIN=$(php "$DIR/../src/DIW.php" domain)
 
     for linkname in ~/.diw/Sites/*; do
         if [[ "$(readlink $linkname)" = "$PWD" ]]
@@ -48,7 +48,7 @@ then
 
     # Fetch Ngrok URL In Background...
     bash "$DIR/src/scripts/fetch-share-url.sh" &
-    sudo -u $(logname) "$DIR/bin/ngrok" http "$HOST.$DOMAIN:80" -host-header=rewrite ${*:2}
+    sudo -u $(logname) "$DIR/ngrok" http "$HOST.$DOMAIN:80" -host-header=rewrite ${*:2}
     exit
 
 # Finally, for every other command we will just proxy into the PHP tool
@@ -63,5 +63,5 @@ echo '
 /_____/___/  |__/|__/
 '
 
-    php "$DIR/src/DIW.php" "$@"
+    php "$PWD/../src/DIW.php" "$@"
 fi
