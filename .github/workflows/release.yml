@@ -7,19 +7,6 @@ on:
       - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
 jobs:
-  generate-changelog:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - uses: BobAnkh/auto-generate-changelog@master
-        with:
-          REPO_NAME: 'MarcoFaul/diw'
-          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PATH: '/docs/changelog.md'
-          COMMIT_MESSAGE: 'docs(CHANGELOG): update release notes'
-          TYPE: 'feat:Feature,fix:Bug Fixes,docs:Documentation,refactor:Refactor,perf:Performance Improvements'
   build:
     name: Create Release
     runs-on: ubuntu-latest
@@ -31,6 +18,15 @@ jobs:
         shell: bash
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: BobAnkh/auto-generate-changelog@master
+          with:
+            REPO_NAME: 'MarcoFaul/diw'
+            ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            PATH: '/docs/changelog.md'
+            COMMIT_MESSAGE: 'docs(CHANGELOG): update release notes'
+            TYPE: 'feat:Feature,fix:Bug Fixes,docs:Documentation,refactor:Refactor,perf:Performance Improvements'
       - name: Get Changelog Entry
         id: changelog_reader
         uses: mindsers/changelog-reader-action@v2
