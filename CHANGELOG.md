@@ -4,6 +4,30 @@
 
 - workflow:
   - fix(workflow) fix changeload reader version ([0cba57c](https://github.com/MarcoFaul/diw/commit/0cba57c1c4e8bf40d7a4defd1326cf483f19ba57))
+  - fix(workflow) add para ([4eb2a57](https://github.com/MarcoFaul/diw/commit/4eb2a573230fa3f3292723c24f29839c3c209c54))
+  - fix(workflow) remove invalid argument ([de8f37b](https://github.com/MarcoFaul/diw/commit/de8f37b253a8f55c3558ca62cd5bf73bb8e5c9c0))
+
+- doc:
+  - fix(doc) move changelog to root ([4bb69ff](https://github.com/MarcoFaul/diw/commit/4bb69ff0d7d76e7cfcb1502db9042032842dd25f))
+
+## [v0.0.5.1](https://github.com/MarcoFaul/diw/releases/tag/v0.0.5.1) - 2020-11-11 17:25:01
+
+awk 's{ print ""; print}; $0~v {print; s=1; next}; s=0' RS= v=2.0.0 ./docs/changelog.md
+
+### Bug Fixes
+
+- workflow:
+  - fix(workflow) fix changeload reader version ([0cba57c](https://github.com/MarcoFaul/diw/commit/0cba57c1c4e8bf40d7a4defd1326cf483f19ba57))
+  - fix(workflow) add para ([4eb2a57](https://github.com/MarcoFaul/diw/commit/4eb2a573230fa3f3292723c24f29839c3c209c54))
+  - fix(workflow) remove invalid argument ([de8f37b](https://github.com/MarcoFaul/diw/commit/de8f37b253a8f55c3558ca62cd5bf73bb8e5c9c0))
+
+- doc:
+  - fix(doc) move changelog to root ([4bb69ff](https://github.com/MarcoFaul/diw/commit/4bb69ff0d7d76e7cfcb1502db9042032842dd25f))
+
+### Bug Fixes
+
+- workflow:
+  - fix(workflow) fix changeload reader version ([0cba57c](https://github.com/MarcoFaul/diw/commit/0cba57c1c4e8bf40d7a4defd1326cf483f19ba57))
 
 ## [v0.0.4.7](https://github.com/MarcoFaul/diw/releases/tag/v0.0.4.7) - 2020-11-11 18:57:36
 
