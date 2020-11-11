@@ -1,5 +1,10 @@
 # CHANGELOG
 
+### Bug Fixes
+
+- workflow:
+  - fix(workflow) fix changeload reader version ([0cba57c](https://github.com/MarcoFaul/diw/commit/0cba57c1c4e8bf40d7a4defd1326cf483f19ba57))
+
 ## [v0.0.4.7](https://github.com/MarcoFaul/diw/releases/tag/v0.0.4.7) - 2020-11-11 18:57:36
 
 
