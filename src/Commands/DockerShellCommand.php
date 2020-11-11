@@ -6,6 +6,7 @@ namespace DIW\Commands;
 use Silly\Application;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
  * @copyright 2020 dasistweb GmbH (https://www.dasistweb.de)
@@ -15,15 +16,15 @@ class DockerShellCommand implements CommandInterface
     public static function command(Application $app): void
     {
         $app->command('shell', function (InputInterface $input, OutputInterface $output) {
+            $io = new SymfonyStyle($input, $output);
             if(!isDockerRunning()) {
-                error('Docker is not running. Please (re)start Docker.');
+                $io->error('Docker is not running. Please (re)start Docker.');
                 return;
             }
 
-//            $text = run(' docker ps -f "name=__shop$"');
-            $text = run(' docker ps -f "name=fik$"');
+            $return = run(' docker ps -f "name=__shop$"');
 
-            $output->writeln($text);
+            $io->writeln($return);
         })->descriptions('Connects to the *__shop container');
     }
 }

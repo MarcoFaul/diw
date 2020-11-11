@@ -7,42 +7,6 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 define('APP_NAME', 'DIW');
 
 /**
- * Output the given text to the console.
- *
- * @param string $output
- *
- * @return void
- */
-function info(string $output)
-{
-    output('<info>' . $output . '</info>');
-}
-
-/**
- * Output the given text to the console.
- *
- * @param string $output
- *
- * @return void
- */
-function warning(string $output)
-{
-    output('<fg=yellow>' . $output . '</>');
-}
-
-/**
- * Output the given text to the console.
- *
- * @param string $output
- *
- * @return void
- */
-function error(string $output)
-{
-    output('<fg=red>' . $output . '</>');
-}
-
-/**
  * Output a table to the console.
  *
  * @param array $headers
@@ -105,9 +69,5 @@ function version(): Version
 
 function isDockerRunning(): bool
 {
-    if (runCommand('docker info >/dev/null 2>&1;') !== '') {
-        return false;
-    }
-
-    return true;
+    return !(runCommand('docker info >/dev/null 2>&1;') !== '');
 }

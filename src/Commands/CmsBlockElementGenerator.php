@@ -34,6 +34,7 @@ class CmsBlockElementGenerator implements CommandInterface
         $app->command('generate', function (InputInterface $input, OutputInterface $output) {
             $io = new SymfonyStyle($input, $output);
             $helper = $this->getHelperSet()->get('question');
+
             $blockTypeQuestion = new ChoiceQuestion('Select cms block-type (defaults to text)', BLOCK_TYPES, 0);
             $blockTypeQuestion->setErrorMessage('BlockType %s is invalid.');
             $blockTypeQuestion->setAutocompleterValues(BLOCK_TYPES);
@@ -44,9 +45,7 @@ class CmsBlockElementGenerator implements CommandInterface
             $featureBlockName = \str_replace('-', '_', $featureName);
 
 
-            #@TODO: enable this again
-//            $projectRootPathQuestion = new Question('Define root project path (defaults to current)', getcwd());
-            $projectRootPathQuestion = new Question('Define root project path (defaults to current)', '/Users/marcofaul/Desktop/dinzler-shop');
+            $projectRootPathQuestion = new Question('Define root project path (defaults to current)', getcwd());
             $projectRootPath = $helper->ask($input, $output, $projectRootPathQuestion);
             # add an slash to the end
             $projectRootPath = \rtrim($projectRootPath, '/') . '/';
@@ -105,6 +104,6 @@ class CmsBlockElementGenerator implements CommandInterface
             $io->success('Successfully created cms block & elment feature: '. $featureName);
             $io->note('Please run a build/compile command to see the result.');
             return 0;
-        })->descriptions('Installs all dependencies');
+        })->descriptions('Creates a shopware 6 block & cms element');
     }
 }
