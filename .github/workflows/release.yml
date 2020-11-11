@@ -7,7 +7,8 @@ on:
       - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
 jobs:
-  generate-changelog:
+  create-release:
+    name: Create Release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -17,15 +18,9 @@ jobs:
         with:
           REPO_NAME: 'MarcoFaul/diw'
           ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PATH: '/docs/changelog.md'
+          PATH: '/CHANGELOG.md'
           COMMIT_MESSAGE: 'docs(CHANGELOG): update release notes'
           TYPE: 'feat:Feature,fix:Bug Fixes,docs:Documentation,refactor:Refactor,perf:Performance Improvements'
-  build:
-    name: Create Release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
       - name: Set version as output variable
         id: tag_name
         run: |
