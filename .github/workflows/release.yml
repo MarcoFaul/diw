@@ -7,8 +7,7 @@ on:
       - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
 jobs:
-  create-release:
-    name: Create Release
+  generate-changelog:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -21,11 +20,6 @@ jobs:
           PATH: '/CHANGELOG.md'
           COMMIT_MESSAGE: 'docs(CHANGELOG): update release notes'
           TYPE: 'feat:Feature,fix:Bug Fixes,docs:Documentation,refactor:Refactor,perf:Performance Improvements'
-             
-  build:
-    name: Create Release
-    runs-on: ubuntu-latest
-    steps:
       - name: Set version as output variable
         id: tag_name
         run: |
