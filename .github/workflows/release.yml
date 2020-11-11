@@ -21,12 +21,12 @@ jobs:
         with:
           fetch-depth: 0
       - uses: BobAnkh/auto-generate-changelog@master
-          with:
-            REPO_NAME: 'MarcoFaul/diw'
-            ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            PATH: '/docs/changelog.md'
-            COMMIT_MESSAGE: 'docs(CHANGELOG): update release notes'
-            TYPE: 'feat:Feature,fix:Bug Fixes,docs:Documentation,refactor:Refactor,perf:Performance Improvements'
+        with:
+          REPO_NAME: 'MarcoFaul/diw'
+          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PATH: '/docs/changelog.md'
+          COMMIT_MESSAGE: 'docs(CHANGELOG): update release notes'
+          TYPE: 'feat:Feature,fix:Bug Fixes,docs:Documentation,refactor:Refactor,perf:Performance Improvements'
       - name: Get Changelog Entry
         id: changelog_reader
         uses: mindsers/changelog-reader-action@v2
