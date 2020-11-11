@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [v0.0.3.5](https://github.com/MarcoFaul/diw/releases/tag/v0.0.3.5) - 2020-11-11 17:23:51
+
+awk 's{ print ""; print}; $0~v {print; s=1; next}; s=0' RS= v=2.0.0 ./docs/changelog.md
+
 ## [v0.0.3.4](https://github.com/MarcoFaul/diw/releases/tag/v0.0.3.4) - 2020-11-11 17:11:21
 
 awk 's{ print ""; print}; $0~v {print; s=1; next}; s=0' RS= v=2.0.0 ./docs/changelog.md
