@@ -7,35 +7,38 @@ on:
       - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
 jobs:
+  generate-changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: BobAnkh/auto-generate-changelog@master
+        with:
+          REPO_NAME: 'MarcoFaul/diw'
+          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PATH: '/docs/changelog.md'
+          COMMIT_MESSAGE: 'docs(CHANGELOG): update release notes'
+          TYPE: 'feat:Feature,fix:Bug Fixes,docs:Documentation,refactor:Refactor,perf:Performance Improvements'
   build:
     name: Create Release
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Set version as output variable
         id: tag_name
         run: |
           echo ::set-output name=current_version::${GITHUB_REF#refs/tags/v}
         shell: bash
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - uses: heinrichreimer/github-changelog-generator-action@v2.1.1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Get Changelog Entry
-        id: changelog_reader
-        uses: mindsers/changelog-reader-action@v2
-        with:
-          version: ${{ steps.tag_name.outputs.current_version }}
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.changelog_reader.outputs.version }}
-          release_name: Release ${{ steps.changelog_reader.outputs.version }}
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
           body: ${{ steps.changelog_reader.outputs.changes }}
-          prerelease: ${{ steps.changelog_reader.outputs.status == 'prereleased' }}
-          draft: ${{ steps.changelog_reader.outputs.status == 'unreleased' }}
+          draft: false
+          prerelease: false
