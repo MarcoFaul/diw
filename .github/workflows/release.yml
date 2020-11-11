@@ -29,7 +29,6 @@ jobs:
         id: changelog_reader
         uses: mindsers/changelog-reader-action@v2
         with:
-          validation_depth: 3
           version: ${{ steps.tag_name.outputs.current_version }}
       - name: Create Release
         id: create_release
