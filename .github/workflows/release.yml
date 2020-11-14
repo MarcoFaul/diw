@@ -25,8 +25,8 @@ jobs:
       - name: "✏️ Generate changelog"
         id: changelog
         uses: metcalfc/changelog-generator@v0.4.4
-          with:
-            myToken: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          myToken: ${{ secrets.GITHUB_TOKEN }}
       - name: "🚀 Create GitHub release"
         id: create_release
         uses: actions/create-release@latest
