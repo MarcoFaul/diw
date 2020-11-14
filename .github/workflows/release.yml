@@ -11,17 +11,27 @@ jobs:
     name: "⬆️ Bump Version"
     steps:
       - uses: actions/checkout@master
+        -
       - name: "🔖 Get Tag Version"
         id: get_version
         run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
-      - name: "➕ Update version"
+
+      - name: "➕ Update version in version file"
         run: 'echo "${{ steps.get_version.outputs.VERSION }}" > version'
         shell: bash
+
+      - name: "➕ Update version in binary"
+        run: 'echo "#!/usr/bin/env bash \
+        DIR="/usr/local/Cellar/diw/${{ steps.get_version.outputs.VERSION:1 }}/" \
+        php "$DIR/src/DIW.php" "$@"" > version'
+        shell: bash
+
       - name: "🎉 Update resources"
         uses: test-room-7/action-update-file@v1
         with:
           file-path: |
             version
+            bin/diw
           commit-msg: 'Bump version to ${{ steps.get_version.outputs.VERSION }}'
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -31,11 +41,13 @@ jobs:
     steps:
       - name: "📥 Check-out"
         uses: actions/checkout@v2
+
       - name: "✏️ Generate changelog"
         id: changelog
         uses: metcalfc/changelog-generator@v0.4.4
         with:
           myToken: ${{ secrets.GITHUB_TOKEN }}
+          
       - name: "🚀 Create GitHub release"
         id: create_release
         uses: actions/create-release@latest
