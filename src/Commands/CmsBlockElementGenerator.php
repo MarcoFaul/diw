@@ -10,7 +10,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 
 define('BLOCK_TYPE_TEXT', 'text');
@@ -31,7 +30,7 @@ class CmsBlockElementGenerator implements CommandInterface
 {
     public static function command(Application $app): void
     {
-        $app->command('generate', function (InputInterface $input, OutputInterface $output) {
+        $app->command('generate:cms-block', function (InputInterface $input, OutputInterface $output) {
             $io = new SymfonyStyle($input, $output);
             $helper = $this->getHelperSet()->get('question');
 
@@ -101,9 +100,9 @@ class CmsBlockElementGenerator implements CommandInterface
             $hydrationHandler->hydrateFileContents();
             $hydrationHandler->postHydrate(\sprintf('%s%sCore/', $pluginsFolder, $projectName), $blockType, $featureName);
 
-            $io->success('Successfully created cms block & elment feature: '. $featureName);
-            $io->note('Please run a build/compile command to see the result.');
+            $io->success('Successfully created a cms block & element with the feature name: '. $featureName);
+            $io->note('Please run a build/compile command to see the results.');
             return 0;
-        })->descriptions('Creates a shopware 6 block & cms element');
+        })->descriptions('Creates a shopware 6 CMS block & element');
     }
 }
