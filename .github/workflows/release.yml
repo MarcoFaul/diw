@@ -26,10 +26,10 @@ jobs:
 
       - name: "➕ Update version in binary"
         run: |
-        echo '#!/usr/bin/env bash' > bin/diw
-        echo '\n' >> bin/diw
-        echo 'DIR="/usr/local/Cellar/diw/${{ steps.get_brew_version.outputs.BREW_VERSION }}/' >> bin/diw
-        echo 'php "\$$DIR/src/DIW.php" "$@"' >> bin/diw
+          echo "#!/usr/bin/env bash" > bin/diw
+          echo "" >> bin/diw
+          echo "DIR="/usr/local/Cellar/diw/${{ steps.get_brew_version.outputs.BREW_VERSION }}/" >> bin/diw
+          echo "php "\$$DIR/src/DIW.php" \"\$$@"\"" >> bin/diw
         shell: bash
 
       - name: "🎉 Update resources"
