@@ -2,4 +2,3 @@
 
 DIR="/usr/local/Cellar/diw/0.0.3.6/"
 php "$DIR/src/DIW.php" "$@"
-

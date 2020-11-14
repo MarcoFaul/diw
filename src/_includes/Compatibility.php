@@ -22,7 +22,7 @@ if (PHP_VERSION_ID <= 70200) {
 }
 
 # installing vendor plugin
-if (!file_exists(\sprintf('%s/vendor/autoload.php', $dir))) {
+if (!file_exists(\sprintf('%s/../../vendor/autoload.php', $dir))) {
     quietly(\sprintf('composer install -d %s/../../', $dir));
 }
 
