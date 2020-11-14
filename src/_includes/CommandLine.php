@@ -76,7 +76,7 @@ function run(string $command, callable $onError = null): string
  */
 function runCommand(string $command, callable $onError = null): string
 {
-    $onError = $onError ?: function() {};
+    $onError = $onError ?: static function() {};
 
     $process = new Process($command);
 
