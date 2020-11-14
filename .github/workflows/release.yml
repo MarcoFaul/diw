@@ -8,14 +8,15 @@ on:
 jobs:
   write-version:
     runs-on: ubuntu-latest
-    name: "🔖 Write Version to File"
+    name: "⬆️ Bump Version"
     steps:
       - uses: actions/checkout@master
-      - name: Update version
-        id: version
-        uses: brettdorrans/write-version-to-file@master
-        with:
-          filename: '/version'
+      - name: "🔖 Get Tag Version"
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+      - name: "➕ Update version"
+        run: 'echo "${{ steps.get_version.outputs.VERSION }}" > version'
+        shell: bash
   build:
     name: "🚀 Release"
     runs-on: ubuntu-18.04
