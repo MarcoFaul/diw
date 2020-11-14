@@ -19,9 +19,7 @@ class XdebugCommand implements CommandInterface
     {
         $app->command('xdebug [-e|--enable] [-s|--status]', function ($enable, $status, InputInterface $input, OutputInterface $output) {
             $io = new SymfonyStyle($input, $output);
-            if (!isDockerRunning()) {
-                $io->error('Docker is not running. Please (re)start Docker.');
-
+            if (!isDockerRunning($io)) {
                 return;
             }
 
@@ -32,6 +30,7 @@ class XdebugCommand implements CommandInterface
 
             if ($status) {
                 $io->note(run(\sprintf('docker exec %s bash -c "cd ~/ && make status"', $xdebugContainerID)));
+
                 return;
             }
 

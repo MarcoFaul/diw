@@ -17,8 +17,7 @@ class DockerShellCommand implements CommandInterface
     {
         $app->command('shell', function (InputInterface $input, OutputInterface $output) {
             $io = new SymfonyStyle($input, $output);
-            if(!isDockerRunning()) {
-                $io->error('Docker is not running. Please (re)start Docker.');
+            if(!isDockerRunning($io)) {
                 return;
             }
 

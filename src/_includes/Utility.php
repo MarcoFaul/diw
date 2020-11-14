@@ -3,6 +3,7 @@
 use SebastianBergmann\Version;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Output\ConsoleOutput;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 define('APP_NAME', 'DIW');
 
@@ -67,7 +68,26 @@ function version(): Version
     return new Version($version, __DIR__ . '/../../');
 }
 
-function isDockerRunning(): bool
+function isDockerRunning(SymfonyStyle $io): bool
 {
-    return !(runCommand('docker info >/dev/null 2>&1;') !== '');
+    $isDockerRunning = !(runCommand('docker info >/dev/null 2>&1;') !== '');
+    if (!$isDockerRunning) {
+        $io->error('Docker is not running. Please (re)start Docker.');
+
+        return false;
+    }
+    return true;
+}
+
+/**
+ * Output the given text to the console.
+ * Should be used only for compatibility methods
+ *
+ * @param string $output
+ *
+ * @return void
+ */
+function error(string $output)
+{
+    output('<fg=red>' . $output . '</>');
 }
