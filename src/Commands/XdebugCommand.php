@@ -17,7 +17,7 @@ class XdebugCommand implements CommandInterface
 
     public static function command(Application $app): void
     {
-        $app->command('xdebug [-y|--enable]', function ($enable, InputInterface $input, OutputInterface $output) {
+        $app->command('xdebug [-e|--enable] [-s|--status]', function ($enable, $status, InputInterface $input, OutputInterface $output) {
             $io = new SymfonyStyle($input, $output);
             if (!isDockerRunning()) {
                 $io->error('Docker is not running. Please (re)start Docker.');
@@ -25,26 +25,43 @@ class XdebugCommand implements CommandInterface
                 return;
             }
 
-            $xdebugContainerName = run('docker ps --format {{.Names}} -f "name=__shop$"');
-            $xdebugEnabled = run(\sprintf('docker exec -it -u %s %s bash -c "php -v | grep Xdebug"', XdebugCommand::CONTAINER_USER, $xdebugContainerName)) !== '';
+            # output only the ID for the container name *__shop
+            $xdebugContainerID = run('docker ps -aqf "name=__shop$"');
+            # remove whitespaces etc
+            $xdebugContainerID = \str_replace(array("\r", "\n"), '', $xdebugContainerID);
 
-            if (!$xdebugEnabled) {
-                $io->error('Xdebug is not installed!');
+            if ($status) {
+                $io->note(run(\sprintf('docker exec %s bash -c "cd ~/ && make status"', $xdebugContainerID)));
+                return;
+            }
+
+            $xdebugEnabled = run(\sprintf('docker exec %s bash -c "php -v | grep Xdebug"', $xdebugContainerID)) !== '';
+
+            if ($xdebugEnabled && $enable) {
+                $io->error('Xdebug is already active');
+
+                return;
+            }
+
+            if (!$xdebugEnabled && !$enable) {
+                $io->error('Xdebug is already inactive');
 
                 return;
             }
 
             if ($enable) {
-                run(\sprintf('docker exec -u %s %s -c "cd ~/ && make xdebug-on"', XdebugCommand::CONTAINER_USER, $xdebugContainerName));
+                run(\sprintf('docker exec %s bash -c "cd ~/ && make xdebug-on"', $xdebugContainerID));
+                $io->success('Successfully activated xdebug');
             } else {
-                run(\sprintf('docker exec -u %s %s -c "cd ~/ && make xdebug-off"', XdebugCommand::CONTAINER_USER, $xdebugContainerName));
+                run(\sprintf('docker exec %s bash -c "cd ~/ && make xdebug-off"', $xdebugContainerID));
+
+                $io->success('Successfully deactivated xdebug');
             }
 
-
-            $io->note(run(\sprintf('docker exec -u %s %s -c "cd ~/ && make status"', XdebugCommand::CONTAINER_USER, $xdebugContainerName)));
         })->descriptions(
             'Enable or Disable xdebug on the shop container', [
                 '--enable' => 'Enables xdebug',
+                '--status' => 'Shows the current xdebug status',
             ]
         );
     }
