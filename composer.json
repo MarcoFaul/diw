@@ -14,7 +14,7 @@
   },
   "require": {
     "php": ">=7.2",
-    "illuminate/container": "v8.12.3",
+    "illuminate/container": "v8.14.0",
     "nategood/httpful": "*",
     "mnapoli/silly": "1.7.2",
     "symfony/process": "~4.1.0",
