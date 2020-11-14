@@ -14,7 +14,15 @@ jobs:
 
       - name: "🔖 Get Tag Version"
         id: get_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+        run: |
+        echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+
+      - name: "🔖 Get Brew Version"
+        uses: bluwy/substitute-string-action@v1
+        id: sub
+          with:
+            _input-text: ${VERSION}
+            v:
 
       - name: "➕ Update version in version file"
         run: 'echo "${{ steps.get_version.outputs.VERSION }}" > version'
@@ -22,7 +30,7 @@ jobs:
 
       - name: "➕ Update version in binary"
         run: 'echo "#!/usr/bin/env bash \
-        DIR="/usr/local/Cellar/diw/${{ steps.get_version.outputs.VERSION:1 }}/" \
+        DIR="/usr/local/Cellar/diw/${{ steps.sub.outputs.result }}/" \
         php "$DIR/src/DIW.php" "$@"" > bin/diw'
         shell: bash
 
