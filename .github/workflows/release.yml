@@ -17,6 +17,14 @@ jobs:
       - name: "➕ Update version"
         run: 'echo "${{ steps.get_version.outputs.VERSION }}" > version'
         shell: bash
+      - name: "🎉 Update resources"
+        uses: test-room-7/action-update-file@v1
+        with:
+          file-path: |
+            version
+          commit-msg: 'Bump version to ${{ steps.get_version.outputs.VERSION }}'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
   build:
     name: "🚀 Release"
     runs-on: ubuntu-18.04
