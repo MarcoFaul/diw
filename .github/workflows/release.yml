@@ -14,8 +14,7 @@ jobs:
 
       - name: "🔖 Get Tag Version"
         id: get_version
-        run: |
-        echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
 
       - name: "🔖 Get Brew Version"
         uses: bluwy/substitute-string-action@v1
