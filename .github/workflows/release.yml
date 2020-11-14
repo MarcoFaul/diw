@@ -19,9 +19,9 @@ jobs:
       - name: "🔖 Get Brew Version"
         uses: bluwy/substitute-string-action@v1
         id: sub
-          with:
-            _input-text: ${VERSION}
-            v:
+        with:
+          _input-text: ${VERSION}
+          v:
 
       - name: "➕ Update version in version file"
         run: 'echo "${{ steps.get_version.outputs.VERSION }}" > version'
