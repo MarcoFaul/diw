@@ -23,7 +23,7 @@ jobs:
       - name: "➕ Update version in binary"
         run: 'echo "#!/usr/bin/env bash \
         DIR="/usr/local/Cellar/diw/${{ steps.get_version.outputs.VERSION:1 }}/" \
-        php "$DIR/src/DIW.php" "$@"" > version'
+        php "$DIR/src/DIW.php" "$@"" > bin/diw'
         shell: bash
 
       - name: "🎉 Update resources"
