@@ -28,11 +28,11 @@ jobs:
         run: |
           echo "#!/usr/bin/env bash" > bin/diw
           echo "" >> bin/diw
-          echo 'DIR="/usr/local/Cellar/diw/'${{ env.BREW_VERSION }}'/"' >> bin/diw
+          echo 'DIR="/usr/local/Cellar/diw/'${{ env.BREW_VERSION }}'"' >> bin/diw
           echo 'php "$DIR/src/DIW.php" "$@"' >> bin/diw
         shell: bash
 
-      - name: "🎉 Update resources"
+      - name: "🎉 Update version resources"
         uses: test-room-7/action-update-file@v1
         with:
           file-path: |
