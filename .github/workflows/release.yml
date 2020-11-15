@@ -18,7 +18,7 @@ jobs:
 
       - name: "🔖 Get Brew Version"
         id: get_brew_version
-        run: echo ::set-output name=BREW_VERSION::${VERSION | tr -d 'v'}
+        run: echo ::set-output name=BREW_VERSION::$(VERSION | tr -d 'v')
 
       - name: "➕ Update version in version file"
         run: 'echo "${{ steps.get_version.outputs.VERSION }}" > version'
