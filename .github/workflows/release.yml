@@ -16,12 +16,6 @@ jobs:
         id: get_version
         run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
 
-      - name: "🔖 Get Brew Version"
-        id: get_brew_version
-        run: |
-          echo ::set-output name=BREW_VERSION::(${{ steps.get_version.outputs.VERSION }} | tr -d 'v')
-          echo ${{ steps.get_brew_version.outputs.BREW_VERSION }}
-
       - name: "➕ Update version in version file"
         run: 'echo "${{ steps.get_version.outputs.VERSION }}" > version'
         shell: bash
@@ -30,7 +24,7 @@ jobs:
         run: |
           echo "#!/usr/bin/env bash" > bin/diw
           echo "" >> bin/diw
-          echo 'DIR="/usr/local/Cellar/diw/${{ steps.get_brew_version.outputs.BREW_VERSION }}/' >> bin/diw
+          echo 'DIR="/usr/local/Cellar/diw/$(echo ${{ steps.get_version.outputs.VERSION }} | tr -d 'v')/' >> bin/diw
           echo 'php "\$$DIR/src/DIW.php" \"\$$@"\"' >> bin/diw
         shell: bash
 
