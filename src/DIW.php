@@ -4,11 +4,11 @@
 /**
  * Load correct autoloader depending on install location.
  */
-if (\file_exists(__DIR__ . '/../vendor/autoload.php')) {
-    require __DIR__ . '/../vendor/autoload.php';
-} else {
-    require __DIR__ . '/../../../autoload.php';
+if (!\file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    passthru(\sprintf('composer install -d %s/../', __DIR__));
 }
+
+require __DIR__ . '/../vendor/autoload.php';
 
 use DIW\Commands\CmsBlockElementGenerator;
 use DIW\Commands\DevCommand;

@@ -21,11 +21,6 @@ if (PHP_VERSION_ID <= 70200) {
     exit(1);
 }
 
-# installing vendor plugin
-if (!file_exists(\sprintf('%s/../../vendor/autoload.php', $dir))) {
-    quietly(\sprintf('composer install -d %s/../../', $dir));
-}
-
 if (!$inTestingEnvironment && run('which brew') === '') {
     error(APP_NAME . ' requires Homebrew to be installed on your Mac.');
 
