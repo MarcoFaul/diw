@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-DIR="/usr/local/Cellar/diw/0.1.9.3"
+DIR="/usr/local/Cellar/diw/0.1.9.4"
 php "$DIR/src/DIW.php" "$@"
