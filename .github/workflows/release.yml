@@ -41,6 +41,14 @@ jobs:
           commit-msg: 'Bump version to ${{ steps.get_version.outputs.VERSION }}'
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: "⬆️ Bump Homebrew formula"
+        uses: mislav/bump-homebrew-formula-action@v1
+        with:
+          homebrew-tap: MarcoFaul/homebrew-diw
+          formula-name: diw
+        env:
+          COMMITTER_TOKEN: ${{ secrets.BREW_TOKEN }}
+
   build:
     needs: "write-version"
     name: "🚀 Release"
@@ -66,19 +74,3 @@ jobs:
           body: ${{ steps.changelog.outputs.changelog }}
           draft: false
           prerelease: false
-
-  homebrew:
-    needs: "build"
-    name: "⬆️ Bump Homebrew formula"
-    runs-on: ubuntu-latest
-    steps:
-      - name: "📥 Check-out"
-        uses: actions/checkout@v2
-
-      - uses: mislav/bump-homebrew-formula-action@v1
-        if: "!contains(github.ref, '-')" # skip prereleases
-        with:
-          homebrew-tap: MarcoFaul/homebrew-diw
-          formula-name: diw
-        env:
-          COMMITTER_TOKEN: ${{ secrets.BREW_TOKEN }}
