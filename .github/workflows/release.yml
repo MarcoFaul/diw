@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     name: "⬆️ Bump Version"
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
 
       - name: "🔖 Get Tag Version"
         id: get_version
@@ -69,9 +69,12 @@ jobs:
 
   homebrew:
     needs: "build"
-    name: Bump Homebrew formula
+    name: "⬆️ Bump Homebrew formula"
     runs-on: ubuntu-latest
     steps:
+      - name: "📥 Check-out"
+        uses: actions/checkout@v2
+
       - uses: mislav/bump-homebrew-formula-action@v1
         if: "!contains(github.ref, '-')" # skip prereleases
         with:
