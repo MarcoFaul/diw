@@ -28,7 +28,6 @@ jobs:
         run: |
           echo "#!/usr/bin/env bash" > bin/diw
           echo "" >> bin/diw
-          echo 'DIR="/usr/local/Cellar/diw/'$(echo ${{ steps.get_version.outputs.VERSION }} | tr -d 'v')'/"' >> bin/diw
           echo 'DIR="/usr/local/Cellar/diw/'${{ env.BREW_VERSION }}'/"' >> bin/diw
           echo 'php "$DIR/src/DIW.php" "$@"' >> bin/diw
         shell: bash
@@ -43,6 +42,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
   build:
+    needs: "write-version"
     name: "🚀 Release"
     runs-on: ubuntu-18.04
     steps:
