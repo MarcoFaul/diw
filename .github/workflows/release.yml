@@ -24,8 +24,8 @@ jobs:
         run: |
           echo "#!/usr/bin/env bash" > bin/diw
           echo "" >> bin/diw
-          echo 'DIR="/usr/local/Cellar/diw/$(echo ${{ steps.get_version.outputs.VERSION }} | tr -d 'v')/' >> bin/diw
-          echo 'php "\$$DIR/src/DIW.php" \"\$$@"\"' >> bin/diw
+          echo 'DIR="/usr/local/Cellar/diw/"$(echo ${{ steps.get_version.outputs.VERSION }} | tr -d 'v')/"' >> bin/diw
+          echo 'php "$DIR/src/DIW.php" "$@"' >> bin/diw
         shell: bash
 
       - name: "🎉 Update resources"
