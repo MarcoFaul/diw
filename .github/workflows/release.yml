@@ -34,6 +34,7 @@ jobs:
 
       - name: "🎉 Update version resources"
         uses: test-room-7/action-update-file@v1
+        id: update_resources
         with:
           file-path: |
             version
@@ -56,6 +57,7 @@ jobs:
     steps:
       - name: "📥 Check-out"
         uses: actions/checkout@v2
+        ref: ${{ steps.update_resources.outputs.commit-sha }}
 
       - name: "✏️ Generate changelog"
         id: changelog
