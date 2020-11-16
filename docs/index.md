@@ -21,7 +21,6 @@ Welcome to diw's documentation!
     :maxdepth: 1
     :caption: About DIW
 
-    ../CHANGELOG
-    images
     Github Project <https://github.com/MarcoFaul/diw>
+    Github Release Notes <https://github.com/MarcoFaul/diw/releases>
 ```
