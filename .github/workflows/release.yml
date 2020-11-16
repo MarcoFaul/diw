@@ -69,9 +69,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          commitish: ${{ env.BUMPED_COMMIT_SHA }}
-          #tag_name: ${{ github.ref }}
+          tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
           body: ${{ steps.changelog.outputs.changelog }}
           draft: false
           prerelease: false
+
+      - uses: AButler/upload-release-assets@v2.0
+        with:
+          files: 'version;bin/diw'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
