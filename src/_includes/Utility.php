@@ -6,6 +6,7 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 define('APP_NAME', 'DIW');
+define('CONTAINER_SUFFIX', '__shop');
 
 /**
  * Output a table to the console.
@@ -68,12 +69,13 @@ function version(): Version
 
 function isDockerRunning(SymfonyStyle $io): bool
 {
-    $isDockerRunning = !(runCommand('docker info >/dev/null 2>&1;') !== '');
+    $isDockerRunning = !(quietly('docker info') !== '');
     if (!$isDockerRunning) {
         $io->error('Docker is not running. Please (re)start Docker.');
 
         return false;
     }
+
     return true;
 }
 
@@ -88,4 +90,9 @@ function isDockerRunning(SymfonyStyle $io): bool
 function error(string $output)
 {
     output('<fg=red>' . $output . '</>');
+}
+
+function removeSpaces(string $string): string
+{
+    return \str_replace(["\r", "\n"], '', $string);
 }

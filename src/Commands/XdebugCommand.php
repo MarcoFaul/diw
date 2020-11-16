@@ -24,9 +24,8 @@ class XdebugCommand implements CommandInterface
             }
 
             # output only the ID for the container name *__shop
-            $xdebugContainerID = run('docker ps -aqf "name=__shop$"');
+            $xdebugContainerID = removeSpaces(run(\sprintf('docker ps -aqf "name=%s$"', CONTAINER_SUFFIX)));
             # remove whitespaces etc
-            $xdebugContainerID = \str_replace(["\r", "\n"], '', $xdebugContainerID);
 
             if ($status) {
                 $io->note(run(\sprintf('docker exec %s bash -c "cd ~/ && make status"', $xdebugContainerID)));
