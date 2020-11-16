@@ -55,6 +55,8 @@ jobs:
     name: "🚀 Release"
     runs-on: ubuntu-18.04
     steps:
+      - name: Debug Action
+        uses: hmarr/debug-action@v1.0.0
       - name: "📥 Check-out"
         uses: actions/checkout@v2
         with:
