@@ -55,16 +55,12 @@ jobs:
           COMMITTER_TOKEN: ${{ secrets.BREW_TOKEN }}
 
 
-# release stuff starts here
-      - name: "📥 Check-out"
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ env.BUMPED_COMMIT_SHA }}
-
+####### release stuff starts here #######
       - name: "✏️ Generate changelog"
         id: changelog
         uses: metcalfc/changelog-generator@v0.4.4
         with:
+          head-ref: ${{ env.BUMPED_COMMIT_SHA }}
           myToken: ${{ secrets.GITHUB_TOKEN }}
 
       - name: "🚀 Create GitHub release"
@@ -73,6 +69,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          commitish: ${{ env.BUMPED_COMMIT_SHA }}
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
           body: ${{ steps.changelog.outputs.changelog }}
