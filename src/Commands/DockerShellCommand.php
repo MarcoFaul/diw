@@ -21,9 +21,10 @@ class DockerShellCommand implements CommandInterface
                 return;
             }
 
-            $return = run(' docker ps -f "name=__shop$"');
+            $containerID = removeSpaces(run(\sprintf('docker ps -aqf "name=%s$"', CONTAINER_SUFFIX)));
 
-            $io->writeln($return);
+            passthruCommand(\sprintf('docker exec -it %s bash', $containerID));
+
         })->descriptions('Connects to the *__shop container');
     }
 }
