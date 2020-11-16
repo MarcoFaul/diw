@@ -78,4 +78,5 @@ jobs:
       - uses: AButler/upload-release-assets@v2.0
         with:
           files: 'version;bin/diw'
+          release-tag: ${{ github.ref }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
