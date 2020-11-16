@@ -32,6 +32,11 @@ jobs:
           echo 'php "$DIR/src/DIW.php" "$@"' >> bin/diw
         shell: bash
 
+      - name: "➕ Create release zip file"
+        run: |
+          zip diw-${{ github.ref } version composer.* src/* bin/* LICENSE
+        shell: bash
+
       ####### release stuff starts here #######
       - name: "✏️ Generate changelog"
         id: changelog
