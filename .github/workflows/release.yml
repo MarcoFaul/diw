@@ -44,7 +44,9 @@ jobs:
 
       - name: "Set bumped commit sha env"
         id: bumped_commit_sha
-        run: echo ::set-output name=BUMPED_COMMIT_SHA::${{ steps.update_resources.outputs.commit-sha }}
+        run: |
+          echo ${{ steps.update_resources.outputs.commit-sha }}
+          echo ::set-output name=BUMPED_COMMIT_SHA::${{ steps.update_resources.outputs.commit-sha }}
 
       - name: "⬆️ Bump Homebrew formula"
         uses: mislav/bump-homebrew-formula-action@v1
