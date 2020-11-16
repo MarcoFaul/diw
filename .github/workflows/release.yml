@@ -57,7 +57,8 @@ jobs:
     steps:
       - name: "📥 Check-out"
         uses: actions/checkout@v2
-        ref: ${{ steps.update_resources.outputs.commit-sha }}
+        with:
+          ref: ${{ steps.update_resources.outputs.commit-sha }}
 
       - name: "✏️ Generate changelog"
         id: changelog
