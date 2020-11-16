@@ -32,29 +32,6 @@ jobs:
           echo 'php "$DIR/src/DIW.php" "$@"' >> bin/diw
         shell: bash
 
-      - name: "🎉 Update version resources"
-        uses: test-room-7/action-update-file@v1
-        id: update_resources
-        with:
-          file-path: |
-            version
-            bin/diw
-          commit-msg: 'Bump version to ${{ steps.get_version.outputs.VERSION }}'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: "Set bumped commit sha env"
-        id: bumped_commit_sha
-        run: echo "BUMPED_COMMIT_SHA=${{ steps.update_resources.outputs.commit-sha }}" >> $GITHUB_ENV
-
-      - name: "⬆️ Bump Homebrew formula"
-        uses: mislav/bump-homebrew-formula-action@v1
-        with:
-          homebrew-tap: MarcoFaul/homebrew-diw
-          formula-name: diw
-        env:
-          COMMITTER_TOKEN: ${{ secrets.BREW_TOKEN }}
-
-
       ####### release stuff starts here #######
       - name: "✏️ Generate changelog"
         id: changelog
@@ -75,8 +52,22 @@ jobs:
           draft: false
           prerelease: false
 
-      - uses: AButler/upload-release-assets@v2.0
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: 'version;bin/diw'
-          release-tag: ${{ github.ref }}
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./diw-${{ github.ref }}.zip
+          asset_name: diw-${{ github.ref }}.zip
+          asset_content_type: application/zip
+
+      ####### create a new homebrew formula version #######
+      - name: "⬆️ Bump Homebrew formula"
+        uses: mislav/bump-homebrew-formula-action@v1
+        with:
+          homebrew-tap: MarcoFaul/homebrew-diw
+          formula-name: diw
+        env:
+          COMMITTER_TOKEN: ${{ secrets.BREW_TOKEN }}
