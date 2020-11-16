@@ -18,7 +18,6 @@
     "nategood/httpful": "*",
     "mnapoli/silly": "1.7.2",
     "symfony/process": "~4.1.0",
-    "sebastian/version": "^2.0.1",
     "squizlabs/php_codesniffer": "*",
     "symfony/filesystem": "^5.1",
     "symfony/finder": "^5.1"

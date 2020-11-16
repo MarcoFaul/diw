@@ -40,6 +40,6 @@ class UpdateCommand implements CommandInterface
                 quietly('brew upgrade ' . \strtolower(APP_NAME));
             }
 
-        })->descriptions('Update package');
+        })->descriptions(\sprintf('Update %s Utility', \strtolower(APP_NAME)));
     }
 }

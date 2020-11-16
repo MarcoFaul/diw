@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-use SebastianBergmann\Version;
+use DIW\Components\Helper\Version;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -63,9 +63,7 @@ function user(): string
  */
 function version(): Version
 {
-    $version = \trim(\file_get_contents(__DIR__ . '/../../version'));
-
-    return new Version($version, __DIR__ . '/../../');
+    return new Version();
 }
 
 function isDockerRunning(SymfonyStyle $io): bool
