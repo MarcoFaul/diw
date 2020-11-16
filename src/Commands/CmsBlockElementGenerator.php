@@ -100,7 +100,7 @@ class CmsBlockElementGenerator implements CommandInterface
             $hydrationHandler->hydrateFileContents();
             $hydrationHandler->postHydrate(\sprintf('%s%sCore/', $pluginsFolder, $projectName), $blockType, $featureName);
 
-            $io->success('Successfully created a cms block & element with the feature name: '. $featureName);
+            $io->success('Successfully created a cms block & element with the feature name: ' . $featureName);
             $io->note('Please run a build/compile command to see the results.');
             return 0;
         })->descriptions('Creates a shopware 6 CMS block & element');
