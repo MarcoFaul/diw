@@ -33,8 +33,7 @@ jobs:
         shell: bash
 
       - name: "➕ Create release zip file"
-        run: |
-          zip diw-${{ github.ref } version composer.* src/* bin/* LICENSE
+        run: zip diw-${{ github.ref }} version composer.* src/* bin/* LICENSE
         shell: bash
 
       ####### release stuff starts here #######
