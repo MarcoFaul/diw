@@ -42,6 +42,10 @@ jobs:
           commit-msg: 'Bump version to ${{ steps.get_version.outputs.VERSION }}'
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: "Set bumped commit sha env"
+        id: bumped_commit_sha
+        run: echo ::set-output name=BUMPED_COMMIT_SHA::${steps.update_resources.outputs.commit-sha}
+
       - name: "⬆️ Bump Homebrew formula"
         uses: mislav/bump-homebrew-formula-action@v1
         with:
@@ -60,7 +64,7 @@ jobs:
       - name: "📥 Check-out"
         uses: actions/checkout@v2
         with:
-          ref: ${{ steps.update_resources.outputs.commit-sha }}
+          ref: ${{ env.BUMPED_COMMIT_SHA }}
 
       - name: "✏️ Generate changelog"
         id: changelog
