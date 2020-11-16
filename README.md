@@ -25,4 +25,4 @@ This work is licensed under the MIT license. See [LICENSE](https://github.com/Ma
 
 ## Author Information
 
-This project was started in 2020 by Marco Faul.
+This project was started in 2020 by [Marco Faul](https://github.com/MarcoFaul).
