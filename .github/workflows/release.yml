@@ -55,7 +55,7 @@ jobs:
           COMMITTER_TOKEN: ${{ secrets.BREW_TOKEN }}
 
 
-####### release stuff starts here #######
+      ####### release stuff starts here #######
       - name: "✏️ Generate changelog"
         id: changelog
         uses: metcalfc/changelog-generator@v0.4.4
