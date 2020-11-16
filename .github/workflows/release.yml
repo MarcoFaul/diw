@@ -33,7 +33,7 @@ jobs:
         shell: bash
 
       - name: "➕ Create release zip file"
-        run: zip diw-${{ env.BREW_VERSION }}.zip composer.* src/* bin/* LICENSE version
+        run: zip diw-${{ env.BREW_VERSION }}.tar.gz composer.* src/* bin/* LICENSE version
         shell: bash
 
       ####### release stuff starts here #######
@@ -63,8 +63,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./diw-${{ env.BREW_VERSION }}.zip
-          asset_name: diw-${{ env.BREW_VERSION }}.zip
+          asset_path: ./diw-${{ env.BREW_VERSION }}.tar.zip
+          asset_name: diw-${{ env.BREW_VERSION }}.tar.zip
           asset_content_type: application/zip
 
       ####### create a new homebrew formula version #######
@@ -73,5 +73,6 @@ jobs:
         with:
           homebrew-tap: MarcoFaul/homebrew-diw
           formula-name: diw
+          download-url: https://github.com/MarcoFaul/diw/releases/download/v${{ env.BREW_VERSION }}/diw-${{ env.BREW_VERSION }}.tar.gz
         env:
           COMMITTER_TOKEN: ${{ secrets.BREW_TOKEN }}
