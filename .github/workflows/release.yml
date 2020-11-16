@@ -60,7 +60,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - name: Debug Action
-        uses: hmarr/debug-action@v1.0.0
+        run: echo ${{ env.BUMPED_COMMIT_SHA }}
       - name: "📥 Check-out"
         uses: actions/checkout@v2
         with:
