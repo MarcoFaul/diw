@@ -33,7 +33,7 @@ jobs:
         shell: bash
 
       - name: "➕ Create release zip file"
-        run: zip diw-${{ github.ref }} version composer.* src/* bin/* LICENSE
+        run: zip diw-${{ env.BREW_VERSION }} composer.* src/* bin/* LICENSE version
         shell: bash
 
       ####### release stuff starts here #######
@@ -63,8 +63,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./diw-${{ github.ref }}.zip
-          asset_name: diw-${{ github.ref }}.zip
+          asset_path: ./diw-${{ env.BREW_VERSION }}.zip
+          asset_name: diw-${{ env.BREW_VERSION }}.zip
           asset_content_type: application/zip
 
       ####### create a new homebrew formula version #######
