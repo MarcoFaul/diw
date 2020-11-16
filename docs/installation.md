@@ -8,7 +8,11 @@ Installation
 
 ### Installing via Homebrew
 
-DIW may be installed via [Homebrew](https://brew.sh/) on both macOS and Linux hosts:
+DIW may be installed via [Homebrew](https://brew.sh/) on both macOS and Linux hosts
+This will add a new brew tab and installs diw:
 
     brew install marcofaul/diw/diw
+    
+Now just run:
+
     diw

@@ -11,10 +11,8 @@ Welcome to diw's documentation!
     :caption: Getting Started
 
     installation
-    services
-    usage
-    environments
     commands
+    development
 ```
 
 ``` toctree::
