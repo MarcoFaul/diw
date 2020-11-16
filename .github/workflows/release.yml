@@ -33,7 +33,7 @@ jobs:
         shell: bash
 
       - name: "➕ Create release zip file"
-        run: zip diw-${{ env.BREW_VERSION }} composer.* src/* bin/* LICENSE version
+        run: zip diw-${{ env.BREW_VERSION }}.zip composer.* src/* bin/* LICENSE version
         shell: bash
 
       ####### release stuff starts here #######
