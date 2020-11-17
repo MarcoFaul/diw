@@ -5,7 +5,8 @@ $dir = __DIR__;
  * Check the system's compatibility.
  */
 $inTestingEnvironment = \strpos($_SERVER['SCRIPT_NAME'], 'phpunit') !== false;
-
+var_dump($_SERVER['SCRIPT_NAME']);
+var_dump($_SERVER);die;
 if (PHP_OS !== 'Darwin' && !$inTestingEnvironment) {
     error(APP_NAME . ' only supports the Mac operating system.' . PHP_EOL);
 
