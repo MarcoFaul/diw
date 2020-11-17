@@ -57,7 +57,7 @@ class XdebugCommand implements CommandInterface
             }
 
         })->descriptions(
-            'Enable or Disable xdebug on the shop container', [
+            'Enable or disable xdebug on the *__shop container (Default: disable)', [
                 '--enable' => 'Enables xdebug',
                 '--status' => 'Shows the current xdebug status',
             ]
