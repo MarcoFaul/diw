@@ -5,6 +5,7 @@ Installation
 
 * [Homebrew](https://brew.sh/)
 * [Docker Desktop for Mac](https://hub.docker.com/editions/community/docker-ce-desktop-mac) (for some commands)
+* [Composer](https://getcomposer.org/) (for some cases)
 
 ### Installing via Homebrew
 
