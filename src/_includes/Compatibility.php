@@ -1,12 +1,9 @@
 <?php declare(strict_types=1);
 
 $dir = __DIR__;
-/**
- * Check the system's compatibility.
- */
-$inTestingEnvironment = \strpos($_SERVER['SCRIPT_NAME'], 'phpunit') !== false;
-var_dump($_SERVER['SCRIPT_NAME']);
-var_dump($_SERVER);die;
+
+# those scripts are used within the github build workflow
+$inTestingEnvironment = \in_array($_SERVER['SCRIPT_NAME'], ['vendor/bin/phpcs', 'vendor/bin/phpunit', 'vendor/bin/phpcbf']) === true;
 if (PHP_OS !== 'Darwin' && !$inTestingEnvironment) {
     error(APP_NAME . ' only supports the Mac operating system.' . PHP_EOL);
 
