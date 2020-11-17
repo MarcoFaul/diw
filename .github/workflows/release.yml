@@ -32,8 +32,12 @@ jobs:
           echo 'php "$DIR/src/DIW.php" "$@"' >> bin/diw
         shell: bash
 
+      - name: "🧬 Install composer dependencies"
+        run: composer install
+        shell: bash
+
       - name: "➕ Create release zip file"
-        run: tar -czvf diw-${{ env.BREW_VERSION }}.tar.gz composer.* src/* bin/* LICENSE version
+        run: tar -czvf diw-${{ env.BREW_VERSION }}.tar.gz LICENSE version composer.* src/* bin/* vendor/*
         shell: bash
 
       ####### release stuff starts here #######
