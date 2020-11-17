@@ -21,7 +21,16 @@ define('BLOCK_TYPE_SIDEBAR', 'sidebar');
 define('BLOCK_TYPE_FORM', 'form');
 define('BLOCK_TYPE_SPECIAL', 'special');
 
-define('BLOCK_TYPES', [BLOCK_TYPE_TEXT, BLOCK_TYPE_TEXT_IMAGE, BLOCK_TYPE_IMAGE, BLOCK_TYPE_VIDEO, BLOCK_TYPE_COMMERCE, BLOCK_TYPE_SIDEBAR, BLOCK_TYPE_FORM, BLOCK_TYPE_SPECIAL]);
+define('BLOCK_TYPES', [
+    BLOCK_TYPE_TEXT,
+    BLOCK_TYPE_TEXT_IMAGE,
+    BLOCK_TYPE_IMAGE,
+    BLOCK_TYPE_VIDEO,
+    BLOCK_TYPE_COMMERCE,
+    BLOCK_TYPE_SIDEBAR,
+    BLOCK_TYPE_FORM,
+    BLOCK_TYPE_SPECIAL
+]);
 
 /**
  * @copyright 2020 dasistweb GmbH (https://www.dasistweb.de)
@@ -42,7 +51,6 @@ class CmsBlockElementGenerator implements CommandInterface
             $featureQuestion = new Question('Enter a feature name (defaults to feature-name)', 'feature-name');
             $featureName = \strtolower($helper->ask($input, $output, $featureQuestion));
             $featureBlockName = \str_replace('-', '_', $featureName);
-
 
             $projectRootPathQuestion = new Question('Define root project path (defaults to current)', getcwd());
             $projectRootPath = $helper->ask($input, $output, $projectRootPathQuestion);
@@ -101,7 +109,9 @@ class CmsBlockElementGenerator implements CommandInterface
             $hydrationHandler->postHydrate(\sprintf('%s%sCore/', $pluginsFolder, $projectName), $blockType, $featureName);
 
             $io->success('Successfully created a cms block & element with the feature name: ' . $featureName);
-            $io->note('Please run a build/compile command to see the results.');
+            
+            $io->note('Please upload the source code to your container and run a build/compile command to see the results.');
+
             return 0;
         })->descriptions('Creates a shopware 6 CMS block & element');
     }
