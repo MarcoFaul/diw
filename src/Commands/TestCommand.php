@@ -29,6 +29,10 @@ class TestCommand implements CommandInterface
             }
 
             $io->writeln($text);
-        })->descriptions('Greet hello');
+        })->descriptions(
+            'Great hello', [
+                '--yell' => 'Uppercase of given name',
+            ]
+        );
     }
 }
