@@ -7,8 +7,8 @@
 
 DIW is a CLI utility.
 
-* [Warden Documentation](https://diw-tool.netlify.app/)
-* [Installing DIW](https://diw-tool.netlify.app/installation.html)
+* [Documentation](https://diw-tool.netlify.app/)
+* [Installation](https://diw-tool.netlify.app/installation.html)
 * [Commands](https://diw-tool.netlify.app/commands.html)
 
 
