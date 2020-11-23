@@ -1,7 +1,7 @@
 Development
 ==================================
 
-### To use the global binary and point to your local installation
+### Link local installation
 
 1. Install diw via [Homebrew](https://brew.sh/). [Go here](https://diw-tool.netlify.app/installation.html)
 
@@ -15,7 +15,7 @@ Development
     This will create a symlink between the `diw` binary and your local git repository
 ```
 
-### Submitting a PR
+### Pre-Submitting
 
-Please use the make commands to format test und build local docs 
+Please use the `make` commands to format test und build local docs 
 and check if everything works as expected
