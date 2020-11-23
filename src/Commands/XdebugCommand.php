@@ -13,11 +13,9 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  */
 class XdebugCommand implements CommandInterface
 {
-    public const CONTAINER_USER = 'dev';
-
     public static function command(Application $app): void
     {
-        $app->command('xdebug [-e|--enable] [-s|--status]', function ($enable, $status, InputInterface $input, OutputInterface $output) {
+        $app->command('xdebug [-e|--enable] [-d|--disable]', function ($enable, $disable, InputInterface $input, OutputInterface $output) {
             $io = new SymfonyStyle($input, $output);
             if (!isDockerRunning($io)) {
                 return;
@@ -27,7 +25,7 @@ class XdebugCommand implements CommandInterface
             $xdebugContainerID = removeSpaces(run(\sprintf('docker ps -aqf "name=%s$"', CONTAINER_SUFFIX)));
             # remove whitespaces etc
 
-            if ($status) {
+            if (!$enable && !$disable) {
                 $io->note(run(\sprintf('docker exec %s bash -c "cd ~/ && make status"', $xdebugContainerID)));
 
                 return;
@@ -57,9 +55,9 @@ class XdebugCommand implements CommandInterface
             }
 
         })->descriptions(
-            'Enable or disable xdebug on the *__shop container (Default: disable)', [
+            'Enable or disable xdebug on the *__shop container (Default: status)', [
                 '--enable' => 'Enables xdebug',
-                '--status' => 'Shows the current xdebug status',
+                '--disable' => 'Disables xdebug'
             ]
         );
     }
