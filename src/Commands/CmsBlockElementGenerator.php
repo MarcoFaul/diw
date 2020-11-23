@@ -41,7 +41,7 @@ class CmsBlockElementGenerator implements CommandInterface
     {
         $app->command('generate:cms-block', function (InputInterface $input, OutputInterface $output) {
             $io = new SymfonyStyle($input, $output);
-            $helper = $this->getHelperSet()->get('question');
+            $helper = $this->getHelperSet()->get('question'); // @phpstan-ignore-line
 
             $blockTypeQuestion = new ChoiceQuestion('Select cms block-type (defaults to text)', BLOCK_TYPES, 0);
             $blockTypeQuestion->setErrorMessage('BlockType %s is invalid.');
@@ -109,7 +109,7 @@ class CmsBlockElementGenerator implements CommandInterface
             $hydrationHandler->postHydrate(\sprintf('%s%sCore/', $pluginsFolder, $projectName), $blockType, $featureName);
 
             $io->success('Successfully created a cms block & element with the feature name: ' . $featureName);
-            
+
             $io->note('Please upload the source code to your container and run a build/compile command to see the results.');
 
             return 0;

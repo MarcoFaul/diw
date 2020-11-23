@@ -30,3 +30,6 @@ doc: ## Call Sphinx doc makefil
 
 doc-html: ## Generate html files via Sphinx
 	$(MAKE) -C docs html
+
+stan: ## Starts the PHPStan Analyser
+	php bin/phpstan.phar --memory-limit=1G analyse .

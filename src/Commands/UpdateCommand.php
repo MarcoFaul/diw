@@ -32,7 +32,7 @@ class UpdateCommand implements CommandInterface
                 return;
             }
 
-            $helper = $this->getHelperSet()->get('question');
+            $helper = $this->getHelperSet()->get('question'); // @phpstan-ignore-line
             $question = new ConfirmationQuestion('Wonna update?', false, '/^(y|j|yes|yeah|jo|yes|jupp)/i');
 
             if ($helper->ask($input, $output, $question)) {
