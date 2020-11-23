@@ -89,7 +89,8 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="commands.html">Commands</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Development</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#steps">Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#to-use-the-global-binary-and-point-to-your-local-installation">To use the global binary and point to your local installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#submitting-a-pr">Submitting a PR</a></li>
 </ul>
 </li>
 </ul>
@@ -162,17 +163,26 @@
             
   <div class="section" id="development">
 <h1>Development<a class="headerlink" href="#development" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="steps">
-<h2>Steps<a class="headerlink" href="#steps" title="Permalink to this headline">¶</a></h2>
-<ol class="simple">
-<li><p>Install diw via <a class="reference external" href="https://diw-tool.netlify.app/installation.html">brew</a></p></li>
+<div class="section" id="to-use-the-global-binary-and-point-to-your-local-installation">
+<h2>To use the global binary and point to your local installation<a class="headerlink" href="#to-use-the-global-binary-and-point-to-your-local-installation" title="Permalink to this headline">¶</a></h2>
+<ol>
+<li><p>Install diw via <a class="reference external" href="https://brew.sh/">brew</a>. <a class="reference external" href="https://diw-tool.netlify.app/installation.html">Go here</a></p></li>
 <li><p>Clone &amp; install the <a class="reference external" href="https://github.com/MarcoFaul/diw">Repository</a></p></li>
-<li><p>Go to the installed git repository directory and run the following command:</p></li>
-</ol>
-<p>This will create a symlink between the <code class="docutils literal notranslate"><span class="pre">diw</span></code> binary and your local git repository</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">symlink</span><span class="o">-</span><span class="n">dev</span>
+<li><p>Go to the local installed git repository directory and run the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">make</span> <span class="n">symlink</span><span class="o">-</span><span class="n">dev</span>
 </pre></div>
 </div>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This will create a symlink between the <cite>diw</cite> binary and your local git repository</p>
+</div>
+</div>
+<div class="section" id="submitting-a-pr">
+<h2>Submitting a PR<a class="headerlink" href="#submitting-a-pr" title="Permalink to this headline">¶</a></h2>
+<p>Please use the make commands to format test und build local docs
+and check if everything works as expected</p>
 </div>
 </div>
 

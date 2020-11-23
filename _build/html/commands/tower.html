@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>CMS Block &amp; Element Generator &mdash; DIW  documentation</title>
+  <title>Tower &mdash; DIW  documentation</title>
   
 
   
@@ -39,8 +39,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Shell" href="dockerShell.html" />
-    <link rel="prev" title="Commands" href="../commands.html" /> 
+    <link rel="next" title="Update" href="update.html" />
+    <link rel="prev" title="SSH-Key" href="sshKey.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -89,12 +89,12 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">CMS Block &amp; Element Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmsBlockGenerator.html">CMS Block &amp; Element Generator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dockerShell.html">Shell</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ngrok.html">Ngrok</a></li>
 <li class="toctree-l2"><a class="reference internal" href="phpstorm.html">PhpStorm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sshKey.html">SSH-Key</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tower.html">Tower</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tower</a></li>
 <li class="toctree-l2"><a class="reference internal" href="update.html">Update</a></li>
 <li class="toctree-l2"><a class="reference internal" href="xdebug.html">Xdebug</a></li>
 </ul>
@@ -153,7 +153,7 @@
         
           <li><a href="../commands.html">Commands</a> &raquo;</li>
         
-      <li>CMS Block &amp; Element Generator</li>
+      <li>Tower</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -170,18 +170,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="cms-block-element-generator">
-<h1>CMS Block &amp; Element Generator<a class="headerlink" href="#cms-block-element-generator" title="Permalink to this headline">¶</a></h1>
-<p>&#64;TODO:</p>
+  <div class="section" id="tower">
+<h1>Tower<a class="headerlink" href="#tower" title="Permalink to this headline">¶</a></h1>
+<p>This helper tool opens the current directory with <a class="reference external" href="https://www.git-tower.com/">(git-)Tower</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This command is made for [Shopware 6](<a class="reference external" href="https://github.com/shopware/platform">https://github.com/shopware/platform</a>).</p>
+<p>The current dirctory should contain an .git folder.</p>
 </div>
-<ol class="simple">
-<li><p>Select cms block</p></li>
-<li><p>Enter feature name</p></li>
-<li><p>Define root project</p></li>
-</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">diw</span> <span class="n">tower</span>
+</pre></div>
+</div>
+<p>e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">Desktop</span><span class="o">/</span><span class="n">exampleProject</span> <span class="o">&amp;&amp;</span> <span class="n">diw</span> <span class="n">tower</span>
+</pre></div>
+</div>
 </div>
 
 
@@ -192,10 +194,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="dockerShell.html" class="btn btn-neutral float-right" title="Shell" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="update.html" class="btn btn-neutral float-right" title="Update" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../commands.html" class="btn btn-neutral float-left" title="Commands" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="sshKey.html" class="btn btn-neutral float-left" title="SSH-Key" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

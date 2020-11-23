@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Shell &mdash; DIW  documentation</title>
+  <title>Ngrok &mdash; DIW  documentation</title>
   
 
   
@@ -39,8 +39,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Xdebug" href="xdebug.html" />
-    <link rel="prev" title="CMS Block &amp; Element Generator" href="cmsBlockGenerator.html" /> 
+    <link rel="next" title="PhpStorm" href="phpstorm.html" />
+    <link rel="prev" title="Shell" href="dockerShell.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -90,7 +90,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="cmsBlockGenerator.html">CMS Block &amp; Element Generator</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dockerShell.html">Shell</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Ngrok</a></li>
+<li class="toctree-l2"><a class="reference internal" href="phpstorm.html">PhpStorm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sshKey.html">SSH-Key</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tower.html">Tower</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update.html">Update</a></li>
 <li class="toctree-l2"><a class="reference internal" href="xdebug.html">Xdebug</a></li>
 </ul>
 </li>
@@ -148,7 +153,7 @@
         
           <li><a href="../commands.html">Commands</a> &raquo;</li>
         
-      <li>Shell</li>
+      <li>Ngrok</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -165,15 +170,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="shell">
-<h1>Shell<a class="headerlink" href="#shell" title="Permalink to this headline">¶</a></h1>
-<p>This Command automatically connects via SSH to a running *__shop container</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The shell command is tuned for [Dockware](<a class="reference external" href="https://dockware.io/">https://dockware.io/</a>) images.</p>
+  <div class="section" id="ngrok">
+<h1>Ngrok<a class="headerlink" href="#ngrok" title="Permalink to this headline">¶</a></h1>
+<p>Starts a tunnel listening for HTTP/HTTPS traffic with a specific hostname.
+The HTTP Host header on incoming public requests is inspected to determine which tunnel it matches.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">diw</span> <span class="n">ngrok</span> <span class="o">&lt;</span><span class="n">url</span><span class="o">&gt;</span>
+</pre></div>
 </div>
-<p>Drop into a shell no matter which bash directory you are currently on</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">diw</span> <span class="n">shell</span>
+<p>e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">diw</span> <span class="n">ngrok</span> <span class="n">localhost</span><span class="p">:</span><span class="mi">80</span>
 </pre></div>
 </div>
 </div>
@@ -186,10 +191,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="xdebug.html" class="btn btn-neutral float-right" title="Xdebug" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="phpstorm.html" class="btn btn-neutral float-right" title="PhpStorm" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="cmsBlockGenerator.html" class="btn btn-neutral float-left" title="CMS Block &amp; Element Generator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="dockerShell.html" class="btn btn-neutral float-left" title="Shell" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

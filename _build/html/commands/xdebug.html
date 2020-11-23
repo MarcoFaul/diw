@@ -40,7 +40,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Development" href="../development.html" />
-    <link rel="prev" title="Shell" href="shell.html" /> 
+    <link rel="prev" title="Update" href="update.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -90,7 +90,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="cmsBlockGenerator.html">CMS Block &amp; Element Generator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="shell.html">Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dockerShell.html">Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ngrok.html">Ngrok</a></li>
+<li class="toctree-l2"><a class="reference internal" href="phpstorm.html">PhpStorm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sshKey.html">SSH-Key</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tower.html">Tower</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update.html">Update</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Xdebug</a></li>
 </ul>
 </li>
@@ -167,28 +172,28 @@
             
   <div class="section" id="xdebug">
 <h1>Xdebug<a class="headerlink" href="#xdebug" title="Permalink to this headline">¶</a></h1>
-<p>This Command enables, disables or returns the xdebug stats from the *__shop container</p>
+<p>This Command enables, disables or returns the xdebug status from the *__shop container</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The shell command is tuned for [Dockware](<a class="reference external" href="https://dockware.io/">https://dockware.io/</a>) images.</p>
 </div>
 <ul>
-<li><p>Enable xdebug</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">diw</span> <span class="n">xdebug</span> <span class="o">-</span><span class="n">e</span>
-   <span class="ow">or</span>
-   <span class="n">diw</span> <span class="n">xdebug</span> <span class="o">--</span><span class="n">enable</span>
-</pre></div>
-</div>
-</li>
-<li><p>Disable xdebug</p>
+<li><p>Returns status of xdebug</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">diw</span> <span class="n">xdebug</span>
 </pre></div>
 </div>
 </li>
-<li><p>Status of xdebug</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">diw</span> <span class="n">xdebug</span> <span class="o">-</span><span class="n">s</span>
+<li><p>Disable xdebug</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">diw</span> <span class="n">xdebug</span> <span class="o">-</span><span class="n">d</span>
    <span class="ow">or</span>
-   <span class="n">diw</span> <span class="n">xdebug</span> <span class="o">--</span><span class="n">status</span>
+   <span class="n">diw</span> <span class="n">xdebug</span> <span class="o">--</span><span class="n">disable</span>
+</pre></div>
+</div>
+</li>
+<li><p>Enable xdebug</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">diw</span> <span class="n">xdebug</span> <span class="o">-</span><span class="n">e</span>
+   <span class="ow">or</span>
+   <span class="n">diw</span> <span class="n">xdebug</span> <span class="o">--</span><span class="n">enable</span>
 </pre></div>
 </div>
 </li>
@@ -206,7 +211,7 @@
         <a href="../development.html" class="btn btn-neutral float-right" title="Development" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="shell.html" class="btn btn-neutral float-left" title="Shell" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="update.html" class="btn btn-neutral float-left" title="Update" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
