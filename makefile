@@ -10,7 +10,7 @@ help:
 
 
 # --------------------------------------------------------------------------
-symlink-dev: ## Bla
+symlink-dev: ## Links your current installation with the global binary
 	$(eval BREW_DIW_BINARY_PATH := $(shell brew --cellar diw)/$(shell brew list --versions diw | tr ' ' '\n' | tail -1)/bin/diw)
 
 	$(shell chmod 777 $(BREW_DIW_BINARY_PATH))
@@ -19,18 +19,14 @@ symlink-dev: ## Bla
 	@echo "DIR="$(shell pwd)"" >> $(BREW_DIW_BINARY_PATH)
 	@echo "php "\$$DIR/src/DIW.php" \"\$$@"\" >> $(BREW_DIW_BINARY_PATH)
 
-
-
-
-
-phpcs: ## run phpcs
+phpcs: ## Run phpcs (Codesniffer inspections)
 	composer run-script phpcs
 
-phpcbf: ## run phpcbf
+phpcbf: ## Run phpcbf (Codesniffer fixer)
 	composer run-script phpcbf
 
-doc: ## call docs
+doc: ## Call Sphinx doc makefil
 	$(MAKE) -C docs
 
-doc-html: ## Generate html files
+doc-html: ## Generate html files via Sphinx
 	$(MAKE) -C docs html
