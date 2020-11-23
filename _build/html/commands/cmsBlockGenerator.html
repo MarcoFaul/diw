@@ -172,16 +172,29 @@
             
   <div class="section" id="cms-block-element-generator">
 <h1>CMS Block &amp; Element Generator<a class="headerlink" href="#cms-block-element-generator" title="Permalink to this headline">¶</a></h1>
-<p>&#64;TODO:</p>
+<p>This will generate a new cms block and element for your shopware 6 project with ease.
+Just answer the upcoming (3) questions.
+<a class="reference external" href="https://docs.shopware.com/en/shopware-platform-dev-en/how-to/custom-cms-block">Shopware 6 documentation</a></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This command is made for [Shopware 6](<a class="reference external" href="https://github.com/shopware/platform">https://github.com/shopware/platform</a>).</p>
+<p>This command is made for Shopware 6 - <a class="reference external" href="https://github.com/shopware/platform">https://github.com/shopware/platform</a>.
+And requires two plugins (&lt;ProjectName&gt;Core, &lt;ProjectName&gt;Theme)</p>
 </div>
 <ol class="simple">
-<li><p>Select cms block</p></li>
-<li><p>Enter feature name</p></li>
-<li><p>Define root project</p></li>
+<li><p>Select your CMS block choice
+Use the number or start typing. Your input will get auto completed.</p></li>
+<li><p>Enter a feature name
+It should be lowercase (if not it will get transformed to lower)
+Use <code class="docutils literal notranslate"><span class="pre">-</span></code> if the feature consists of several words.</p></li>
+<li><p>Define root project
+The root project path is where a <code class="docutils literal notranslate"><span class="pre">project.json</span></code>, <code class="docutils literal notranslate"><span class="pre">.env</span></code> and the <code class="docutils literal notranslate"><span class="pre">vendor</span></code> folder is located.
+If you just hit enter the current directory is used as the root project folder.</p></li>
 </ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Make sure you have uploaded the new created block &amp; Element (Changes made in both <a href="#id1"><span class="problematic" id="id2">*</span></a>Core &amp; <a href="#id3"><span class="problematic" id="id4">*</span></a>Theme plugins)
+and rebuild storefront &amp; administration</p>
+</div>
 </div>
 
 

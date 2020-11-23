@@ -1,9 +1,10 @@
 ## Xdebug
 
-This Command enables, disables or returns the xdebug status from the *__shop container 
+This Command enables, disables or returns the xdebug status from the `*__shop` container 
 
 ``` note::
-    The shell command is tuned for [Dockware](https://dockware.io/) images.
+    The shell command is tuned for Dockware - https://dockware.io/ - images.
+    But as long as the containers name is `*__shop` it should work anyways.
 ```
 
 * Returns status of xdebug

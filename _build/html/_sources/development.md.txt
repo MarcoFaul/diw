@@ -3,7 +3,7 @@ Development
 
 ### To use the global binary and point to your local installation
 
-1. Install diw via [brew](https://brew.sh/). [Go here](https://diw-tool.netlify.app/installation.html)
+1. Install diw via [Homebrew](https://brew.sh/). [Go here](https://diw-tool.netlify.app/installation.html)
 
 2. Clone & install the [Repository](https://github.com/MarcoFaul/diw)
 
