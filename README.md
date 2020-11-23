@@ -5,7 +5,7 @@
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/MarcoFaul/diw)
 [![Inline docs](http://inch-ci.org/github/MarcoFaul/diw.svg?branch=master)](http://inch-ci.org/github/MarcoFaul/diw)
 
-DIW is a CLI utility helper.
+`diw` is a CLI utility helper tool.
 
 * [Documentation](https://diw-tool.netlify.app/)
 * [Installation](https://diw-tool.netlify.app/installation.html)
