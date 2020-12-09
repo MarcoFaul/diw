@@ -19,7 +19,8 @@
     "mnapoli/silly": "1.7.2",
     "symfony/process": "~4.1.0",
     "symfony/filesystem": "^5.1",
-    "symfony/finder": "^5.1"
+    "symfony/finder": "^5.1",
+    "symfony/yaml": "^5.2"
   },
   "require-dev": {
     "mockery/mockery": "1.4.2",
