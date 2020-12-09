@@ -21,11 +21,6 @@ class SshKeyCommand implements CommandInterface
         $app->command('ssh-key', function (InputInterface $input, OutputInterface $output) {
             $io = new SymfonyStyle($input, $output);
 
-//            if (!file_exists(SshKeyCommand::PUB_KEY_PATH)) {
-//                $io->error('Could not find file ' . SshKeyCommand::PUB_KEY_PATH);
-//                return;
-//            }
-
             passthruCommand('pbcopy < ' . SshKeyCommand::PUB_KEY_PATH);
 
             $io->success('Copied ssh key to your clipboard. Use command + c to paste the content somewhere.');
