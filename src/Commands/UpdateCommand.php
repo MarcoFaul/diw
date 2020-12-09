@@ -16,6 +16,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 class UpdateCommand implements CommandInterface
 {
     private const GITHUB_LATEST_RELEASE_URL = 'https://api.github.com/repos/MarcoFaul/diw/releases/latest';
+    private const DEV_VERSION = 'dev-9999';
 
     public static function command(Application $app): void
     {
@@ -23,11 +24,12 @@ class UpdateCommand implements CommandInterface
             $io = new SymfonyStyle($input, $output);
 
             $currentVersion = version()->getVersion();
+            $isDevVersion = $currentVersion === UpdateCommand::DEV_VERSION;
             $response = Request::get(UpdateCommand::GITHUB_LATEST_RELEASE_URL)->send();
 
             $isLatestVersion = \version_compare($currentVersion, $response->body->tag_name, '>=');
 
-            if ($isLatestVersion === true) {
+            if (!$isDevVersion && $isLatestVersion === true) {
                 $io->writeln('You are on the latest version: ' . $response->body->tag_name);
                 return;
             }
