@@ -13,7 +13,12 @@ require __DIR__ . '/../vendor/autoload.php';
 use DIW\CommandLoader;
 use Illuminate\Container\Container;
 use Silly\Application;
+use Symfony\Component\Yaml\Yaml;
 
+# load end file
+$globalConfig = Yaml::parseFile(__DIR__ . '/_config/global.config.yaml');
+$overrideConfig = Yaml::parseFile(__DIR__ . '/_config/override.config.yaml');
+$_ENV = array_replace_recursive($globalConfig, $overrideConfig);
 
 $container = new Container();
 Container::setInstance($container);
