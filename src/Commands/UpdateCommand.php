@@ -9,6 +9,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * @copyright 2020 dasistweb GmbH (https://www.dasistweb.de)
@@ -40,7 +41,20 @@ class UpdateCommand implements CommandInterface
             if ($helper->ask($input, $output, $question)) {
                 $io->writeln('Updating...');
 
+                #check if there is an override.config.xml
+                $filesystem = new Filesystem();
+
+                $io->writeln('Opening git tower');
+                $overrideConfigFilePath = __DIR__ . '/../_config/override.config.yaml';
+                if ($filesystem->exists($overrideConfigFilePath)) {
+                    $filesystem->copy($overrideConfigFilePath, '/tmp');
+                }
+
                 quietly('brew upgrade ' . \strtolower(APP_NAME));
+
+                if ($filesystem->exists('/tmp/override.config.yaml')) {
+                    $filesystem->copy('/tmp/override.config.yaml', __DIR__ . '/../_config/');
+                }
 
                 $io->success(\sprintf('Upgrade diw from "%s" to latest version "%s"', $currentVersion, version()->getVersion()));
             }
