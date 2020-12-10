@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Xdebug &mdash; DIW  documentation</title>
+  <title>Configuration &mdash; DIW  documentation</title>
   
 
   
@@ -39,8 +39,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Development" href="../development.html" />
-    <link rel="prev" title="Update" href="update.html" /> 
+    <link rel="next" title="Shell" href="dockerShell.html" />
+    <link rel="prev" title="CMS Block &amp; Element Generator" href="cmsBlockGenerator.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -90,7 +90,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="cmsBlockGenerator.html">CMS Block &amp; Element Generator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configure">Configure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#list">List</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="dockerShell.html">Shell</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dockerUp.html">Docker Up</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ngrok.html">Ngrok</a></li>
@@ -98,7 +102,7 @@
 <li class="toctree-l2"><a class="reference internal" href="sshKey.html">SSH-Key</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tower.html">Tower</a></li>
 <li class="toctree-l2"><a class="reference internal" href="update.html">Update</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Xdebug</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xdebug.html">Xdebug</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../development.html">Development</a></li>
@@ -155,7 +159,7 @@
         
           <li><a href="../commands.html">Commands</a> &raquo;</li>
         
-      <li>Xdebug</li>
+      <li>Configuration</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -172,36 +176,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="xdebug">
-<h1>Xdebug<a class="headerlink" href="#xdebug" title="Permalink to this headline">¶</a></h1>
-<p>This Command enables, disables or returns the xdebug status from the <code class="docutils literal notranslate"><span class="pre">*__shop</span></code> container.
-To change the container suffix use the <code class="docutils literal notranslate"><span class="pre">configuration:configure</span></code> command.</p>
+  <div class="section" id="configuration">
+<h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="configure">
+<h2>Configure<a class="headerlink" href="#configure" title="Permalink to this headline">¶</a></h2>
+<p>All settings within the <code class="docutils literal notranslate"><span class="pre">configuration:list</span></code> override able. Just use the command below.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">diw</span> <span class="n">configuration</span><span class="p">:</span><span class="n">configure</span>
+</pre></div>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The shell command is tuned for Dockware - <a class="reference external" href="https://dockware.io/">https://dockware.io/</a> - images.
-But as long as the containers name is <cite>*__shop</cite> it should work anyways. (It is configure able)</p>
+<p>Use numbers or just start typehint. Autocomplete is enabled</p>
 </div>
-<ul>
-<li><p>Returns status of xdebug</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">diw</span> <span class="n">xdebug</span>
+</div>
+<div class="section" id="list">
+<h2>List<a class="headerlink" href="#list" title="Permalink to this headline">¶</a></h2>
+<p>Will list all default and overridden configuration within a table</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">diw</span> <span class="n">configuration</span><span class="p">:</span><span class="nb">list</span>
 </pre></div>
 </div>
-</li>
-<li><p>Disable xdebug</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">diw</span> <span class="n">xdebug</span> <span class="o">-</span><span class="n">d</span>
-   <span class="ow">or</span>
-   <span class="n">diw</span> <span class="n">xdebug</span> <span class="o">--</span><span class="n">disable</span>
-</pre></div>
 </div>
-</li>
-<li><p>Enable xdebug</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">diw</span> <span class="n">xdebug</span> <span class="o">-</span><span class="n">e</span>
-   <span class="ow">or</span>
-   <span class="n">diw</span> <span class="n">xdebug</span> <span class="o">--</span><span class="n">enable</span>
-</pre></div>
-</div>
-</li>
-</ul>
 </div>
 
 
@@ -212,10 +206,10 @@ But as long as the containers name is <cite>*__shop</cite> it should work anyway
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../development.html" class="btn btn-neutral float-right" title="Development" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="dockerShell.html" class="btn btn-neutral float-right" title="Shell" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="update.html" class="btn btn-neutral float-left" title="Update" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="cmsBlockGenerator.html" class="btn btn-neutral float-left" title="CMS Block &amp; Element Generator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

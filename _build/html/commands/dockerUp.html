@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Xdebug &mdash; DIW  documentation</title>
+  <title>Docker Up &mdash; DIW  documentation</title>
   
 
   
@@ -39,8 +39,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Development" href="../development.html" />
-    <link rel="prev" title="Update" href="update.html" /> 
+    <link rel="next" title="Ngrok" href="ngrok.html" />
+    <link rel="prev" title="Shell" href="dockerShell.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -92,13 +92,13 @@
 <li class="toctree-l2"><a class="reference internal" href="cmsBlockGenerator.html">CMS Block &amp; Element Generator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dockerShell.html">Shell</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dockerUp.html">Docker Up</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Docker Up</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ngrok.html">Ngrok</a></li>
 <li class="toctree-l2"><a class="reference internal" href="phpstorm.html">PhpStorm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sshKey.html">SSH-Key</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tower.html">Tower</a></li>
 <li class="toctree-l2"><a class="reference internal" href="update.html">Update</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Xdebug</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xdebug.html">Xdebug</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../development.html">Development</a></li>
@@ -155,7 +155,7 @@
         
           <li><a href="../commands.html">Commands</a> &raquo;</li>
         
-      <li>Xdebug</li>
+      <li>Docker Up</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -172,36 +172,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="xdebug">
-<h1>Xdebug<a class="headerlink" href="#xdebug" title="Permalink to this headline">¶</a></h1>
-<p>This Command enables, disables or returns the xdebug status from the <code class="docutils literal notranslate"><span class="pre">*__shop</span></code> container.
-To change the container suffix use the <code class="docutils literal notranslate"><span class="pre">configuration:configure</span></code> command.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The shell command is tuned for Dockware - <a class="reference external" href="https://dockware.io/">https://dockware.io/</a> - images.
-But as long as the containers name is <cite>*__shop</cite> it should work anyways. (It is configure able)</p>
-</div>
-<ul>
-<li><p>Returns status of xdebug</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">diw</span> <span class="n">xdebug</span>
+  <div class="section" id="docker-up">
+<h1>Docker Up<a class="headerlink" href="#docker-up" title="Permalink to this headline">¶</a></h1>
+<p>This Command stops and remove all running containers and executes <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">up</span> <span class="pre">-d</span></code> in the current directory</p>
+<p>Command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">diw</span> <span class="n">up</span>
 </pre></div>
 </div>
-</li>
-<li><p>Disable xdebug</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">diw</span> <span class="n">xdebug</span> <span class="o">-</span><span class="n">d</span>
-   <span class="ow">or</span>
-   <span class="n">diw</span> <span class="n">xdebug</span> <span class="o">--</span><span class="n">disable</span>
-</pre></div>
-</div>
-</li>
-<li><p>Enable xdebug</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">diw</span> <span class="n">xdebug</span> <span class="o">-</span><span class="n">e</span>
-   <span class="ow">or</span>
-   <span class="n">diw</span> <span class="n">xdebug</span> <span class="o">--</span><span class="n">enable</span>
-</pre></div>
-</div>
-</li>
-</ul>
 </div>
 
 
@@ -212,10 +189,10 @@ But as long as the containers name is <cite>*__shop</cite> it should work anyway
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../development.html" class="btn btn-neutral float-right" title="Development" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="ngrok.html" class="btn btn-neutral float-right" title="Ngrok" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="update.html" class="btn btn-neutral float-left" title="Update" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="dockerShell.html" class="btn btn-neutral float-left" title="Shell" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -24,3 +24,7 @@ If you just hit enter the current directory is used as the root project folder.
     Make sure you have uploaded the new created block & Element (Changes made in both *Core & *Theme plugins)
     and rebuild storefront & administration
 ```
+
+``` note::
+    *Core and *Theme suffix can be changed via the configuration:configure command
+```
