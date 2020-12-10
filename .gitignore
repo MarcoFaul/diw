@@ -3,3 +3,4 @@
 /.idea
 /vendor/
 /docs/_build/
+/src/_config/override.config.yaml
