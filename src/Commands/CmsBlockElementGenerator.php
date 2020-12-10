@@ -63,35 +63,37 @@ class CmsBlockElementGenerator implements CommandInterface
                 return 1;
             }
 
+            $corePluginSuffix = $_ENV['cms_block']['suffix_plugin_name']['core'];
+            $themePluginSuffix = $_ENV['cms_block']['suffix_plugin_name']['theme'];
             $pluginsFolder = $projectRootPath . 'custom/plugins/';
             $finder = new Finder();
             $finder->in($pluginsFolder);
-            $finder->name('*Core');
-            $finder->name('*Theme');
+            $finder->name(\sprintf('*%s', $_ENV['cms_block']['suffix_plugin_name']['core']));
+            $finder->name(\sprintf('*%s', $_ENV['cms_block']['suffix_plugin_name']['theme']));
             $finder->depth(0);
 
             $count = \iterator_count($finder);
 
             if ($count < 2) {
-                $io->error('No *Core and/or *Theme plugins found in : ' . $pluginsFolder);
+                $io->error(\sprintf('No *%s and/or *%s plugins found in: %s', $pluginsFolder, $corePluginSuffix, $themePluginSuffix));
 
                 return 1;
             }
 
             if ($count > 2) {
-                $projectNameQuestion = new Question('Sorry we found multi *Core and *Theme Plugins');
+                $projectNameQuestion = new Question(\sprintf('Sorry we found multi *%s and *%s Plugins', $corePluginSuffix, $themePluginSuffix));
                 $projectName = \ucfirst(\strtolower($helper->ask($input, $output, $projectNameQuestion)));
             } else {
                 $pluginsArray = \iterator_to_array($finder, true);
                 /** @var \SplFileInfo $plugin */
                 $plugin = array_shift($pluginsArray);
                 $pluginName = $plugin->getBasename();
-                if (\strpos($pluginName, 'Core')) {
-                    $projectName = \str_replace('Core', '', $pluginName);
-                } elseif (\strpos($pluginName, 'Theme')) {
-                    $projectName = \str_replace('Theme', '', $pluginName);
+                if (\strpos($pluginName, $corePluginSuffix)) {
+                    $projectName = \str_replace($corePluginSuffix, '', $pluginName);
+                } elseif (\strpos($pluginName, $themePluginSuffix)) {
+                    $projectName = \str_replace($themePluginSuffix, '', $pluginName);
                 } else {
-                    $projectNameQuestion = new Question('Sorry we found multi *Core and *Theme Plugins');
+                    $projectNameQuestion = new Question(\sprintf('Sorry we found multi *%s and *%s Plugins', $corePluginSuffix, $themePluginSuffix));
                     $projectName = \ucfirst(\strtolower($helper->ask($input, $output, $projectNameQuestion)));
                 }
             }
@@ -106,7 +108,7 @@ class CmsBlockElementGenerator implements CommandInterface
             $hydrationHandler = new HydrationHandler(__DIR__ . '/../stubs/CmsBlockElement/', $projectRootPath, $replaceMap);
             $hydrationHandler->hydrateFolders();
             $hydrationHandler->hydrateFileContents();
-            $hydrationHandler->postHydrate(\sprintf('%s%sCore/', $pluginsFolder, $projectName), $blockType, $featureName);
+            $hydrationHandler->postHydrate(\sprintf('%s%s%s/', $pluginsFolder, $projectName, $corePluginSuffix), $blockType, $featureName);
 
             $io->success('Successfully created a cms block & element with the feature name: ' . $featureName);
 

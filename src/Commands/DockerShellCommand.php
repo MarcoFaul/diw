@@ -21,9 +21,21 @@ class DockerShellCommand implements CommandInterface
                 return;
             }
 
-            $containerID = removeSpaces(run(\sprintf('docker ps -aqf "name=%s$"', CONTAINER_SUFFIX)));
+            $containerSuffix = $_ENV['docker']['container']['suffix'];
+            $containerUser = $_ENV['docker']['container']['user'];
 
-            passthruCommand(\sprintf('docker exec -it %s bash', $containerID));
+            $containerID = removeSpaces(run(\sprintf('docker ps -aqf "name=%s$"', $containerSuffix)));
+
+            if (!$containerID) {
+                $io->error('No docker container found for the container suffix: ' . $containerSuffix);
+                return;
+            }
+
+            if ($containerUser) {
+                passthruCommand(\sprintf('docker exec -it -u %s %s bash', $containerUser, $containerID));
+            } else {
+                passthruCommand(\sprintf('docker exec -it %s bash', $containerID));
+            }
 
         })->descriptions('Connects to the *__shop container');
     }

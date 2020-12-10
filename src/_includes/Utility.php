@@ -6,7 +6,6 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 define('APP_NAME', 'DIW');
-define('CONTAINER_SUFFIX', '__shop');
 
 /**
  * Output a table to the console.
