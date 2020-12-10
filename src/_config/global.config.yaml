@@ -1,0 +1,13 @@
+version: dev-9999
+docker:
+  container:
+    suffix: __shop
+    user:
+
+cms_block:
+  suffix_plugin_name:
+    core: Core
+    theme: Theme
+
+ssh-key:
+  file_path: ~/.ssh/id_rsa.pub
