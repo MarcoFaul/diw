@@ -17,7 +17,7 @@
     "illuminate/container": "v8.14.0",
     "nategood/httpful": "*",
     "mnapoli/silly": "1.7.2",
-    "symfony/process": "~4.1.0",
+    "symfony/process": "~5.2.1",
     "symfony/filesystem": "^5.2.1",
     "symfony/finder": "^5.2.1",
     "symfony/yaml": "^5.2.1"
