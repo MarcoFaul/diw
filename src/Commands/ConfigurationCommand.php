@@ -39,7 +39,7 @@ class ConfigurationCommand implements CommandInterface
             $selectedConfig = $helper->ask($input, $output, $updateConfigQuestion);
             [$configConcatKey, $configValue] = explode(':', $selectedConfig);
 
-            $newConfigValueQuestion = new Question(\sprintf('Please enter a new value (Current: %s)'. PHP_EOL, $configValue), $configValue);
+            $newConfigValueQuestion = new Question(\sprintf('Please enter a new value (Current: %s)' . PHP_EOL, $configValue), $configValue);
             $newConfigValue = \strtolower($helper->ask($input, $output, $newConfigValueQuestion));
 
             if ($newConfigValue === $configValue) {
@@ -53,7 +53,7 @@ class ConfigurationCommand implements CommandInterface
             $explodedConfigKeys = \explode('.', $configConcatKey);
 
             # restructure our exploded config keys
-            $restructuredConfig = array();
+            $restructuredConfig = [];
             $restructuredConfig[$explodedConfigKeys[count($explodedConfigKeys) - 1]] = $newConfigValue;
             for ($i = count($explodedConfigKeys) - 2; $i > -1; $i--) {
                 $restructuredConfig[$explodedConfigKeys[$i]] = $restructuredConfig;
