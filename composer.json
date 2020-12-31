@@ -13,18 +13,18 @@
     }
   },
   "require": {
-    "php": ">=7.2",
+    "php": "^7.2|^8.0",
     "illuminate/container": "v8.14.0",
     "nategood/httpful": "*",
     "mnapoli/silly": "1.7.2",
     "symfony/process": "~4.1.0",
-    "symfony/filesystem": "^5.1",
-    "symfony/finder": "^5.1",
-    "symfony/yaml": "^5.2"
+    "symfony/filesystem": "^5.2.1",
+    "symfony/finder": "^5.2.1",
+    "symfony/yaml": "^5.2.1"
   },
   "require-dev": {
     "mockery/mockery": "1.4.2",
-    "phpunit/phpunit": "~8.5.2",
+    "phpunit/phpunit": "~8.5.13",
     "squizlabs/php_codesniffer": "*",
     "escapestudios/symfony2-coding-standard": "*",
     "phpcompatibility/php-compatibility": "*"
