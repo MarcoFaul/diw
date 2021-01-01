@@ -78,7 +78,7 @@ function runCommand(string $command, callable $onError = null): string
 {
     $onError = $onError ?: static function() {};
 
-    $process = new Process($command);
+    $process = new Process([$command]);
 
     $processOutput = '';
     $process->setTimeout(null)->run(function($type, $line) use (&$processOutput) {

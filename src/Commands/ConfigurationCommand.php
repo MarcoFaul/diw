@@ -19,6 +19,9 @@ $configKeys = [];
  */
 class ConfigurationCommand implements CommandInterface
 {
+    public const OVERRIDE_FILE_NAME = 'override.config.yaml';
+    public const OVERRIDE_TEMP_FILE_PATH = '/tmp/' . ConfigurationCommand::OVERRIDE_FILE_NAME;
+
     public static function command(Application $app): void
     {
         $app->command('configuration:list', function (InputInterface $input, OutputInterface $output) {
@@ -49,7 +52,7 @@ class ConfigurationCommand implements CommandInterface
             }
 
             #1. get override yaml
-            $overrideConfig = Yaml::parseFile(__DIR__ . '/../_config/override.config.yaml');
+            $overrideConfig = Yaml::parseFile(__DIR__ . '/../_config/' . ConfigurationCommand::OVERRIDE_FILE_NAME);
             $explodedConfigKeys = \explode('.', $configConcatKey);
 
             # restructure our exploded config keys
@@ -62,7 +65,7 @@ class ConfigurationCommand implements CommandInterface
 
             #3 . array_replace_recursive
             $yaml = Yaml::dump(array_replace_recursive($overrideConfig, $restructuredConfig), 4);
-            \file_put_contents(__DIR__ . '/../_config/override.config.yaml', $yaml);
+            \file_put_contents(__DIR__ . '/../_config/' . ConfigurationCommand::OVERRIDE_FILE_NAME, $yaml);
 
             $io->success(\sprintf('"%s" has been successfully changed to "%s" ', $configConcatKey, $newConfigValue));
 

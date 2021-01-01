@@ -48,11 +48,11 @@ class CmsBlockElementGenerator implements CommandInterface
             $blockTypeQuestion->setAutocompleterValues(BLOCK_TYPES);
             $blockType = $helper->ask($input, $output, $blockTypeQuestion);
 
-            $featureQuestion = new Question('Enter a feature name (defaults to feature-name)', 'feature-name');
+            $featureQuestion = new Question('Enter a feature name (defaults to feature-name)' . PHP_EOL, 'feature-name');
             $featureName = \strtolower($helper->ask($input, $output, $featureQuestion));
             $featureBlockName = \str_replace('-', '_', $featureName);
 
-            $projectRootPathQuestion = new Question('Define root project path (defaults to current)', getcwd());
+            $projectRootPathQuestion = new Question('Define root project path (defaults to current)' . PHP_EOL, getcwd());
             $projectRootPath = $helper->ask($input, $output, $projectRootPathQuestion);
             # add an slash to the end
             $projectRootPath = \rtrim($projectRootPath, '/') . '/';
@@ -81,7 +81,7 @@ class CmsBlockElementGenerator implements CommandInterface
             }
 
             if ($count > 2) {
-                $projectNameQuestion = new Question(\sprintf('Sorry we found multi *%s and *%s Plugins', $corePluginSuffix, $themePluginSuffix));
+                $projectNameQuestion = new Question(\sprintf('Sorry we found multi *%s and *%s Plugins' . PHP_EOL, $corePluginSuffix, $themePluginSuffix));
                 $projectName = \ucfirst(\strtolower($helper->ask($input, $output, $projectNameQuestion)));
             } else {
                 $pluginsArray = \iterator_to_array($finder, true);
@@ -93,7 +93,7 @@ class CmsBlockElementGenerator implements CommandInterface
                 } elseif (\strpos($pluginName, $themePluginSuffix)) {
                     $projectName = \str_replace($themePluginSuffix, '', $pluginName);
                 } else {
-                    $projectNameQuestion = new Question(\sprintf('Sorry we found multi *%s and *%s Plugins', $corePluginSuffix, $themePluginSuffix));
+                    $projectNameQuestion = new Question(\sprintf('Sorry we found multi *%s and *%s Plugins' . PHP_EOL, $corePluginSuffix, $themePluginSuffix));
                     $projectName = \ucfirst(\strtolower($helper->ask($input, $output, $projectNameQuestion)));
                 }
             }

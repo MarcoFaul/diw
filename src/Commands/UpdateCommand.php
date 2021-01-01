@@ -36,24 +36,23 @@ class UpdateCommand implements CommandInterface
             }
 
             $helper = $this->getHelperSet()->get('question'); // @phpstan-ignore-line
-            $question = new ConfirmationQuestion('Wonna update?', false, '/^(y|j|yes|yeah|jo|yes|jupp)/i');
+            $question = new ConfirmationQuestion('Wonna update?' . PHP_EOL, false, '/^(y|j|yes|yeah|jo|yes|jupp)/i');
 
             if ($helper->ask($input, $output, $question)) {
                 $io->writeln('Updating...');
 
-                #check if there is an override.config.xml
+                # check if there is an override.config.xml
                 $filesystem = new Filesystem();
-
-                $io->writeln('Opening git tower');
-                $overrideConfigFilePath = __DIR__ . '/../_config/override.config.yaml';
+                $overrideConfigFilePath = __DIR__ . '/../_config/' . ConfigurationCommand::OVERRIDE_FILE_NAME;
                 if ($filesystem->exists($overrideConfigFilePath)) {
-                    $filesystem->copy($overrideConfigFilePath, '/tmp');
+                    $filesystem->copy($overrideConfigFilePath, ConfigurationCommand::OVERRIDE_TEMP_FILE_PATH);
                 }
 
+                # update via brew
                 quietly('brew upgrade ' . \strtolower(APP_NAME));
 
-                if ($filesystem->exists('/tmp/override.config.yaml')) {
-                    $filesystem->copy('/tmp/override.config.yaml', __DIR__ . '/../_config/');
+                if ($filesystem->exists(ConfigurationCommand::OVERRIDE_TEMP_FILE_PATH)) {
+                    $filesystem->copy(ConfigurationCommand::OVERRIDE_TEMP_FILE_PATH, __DIR__ . '/../_config/' . ConfigurationCommand::OVERRIDE_FILE_NAME);
                 }
 
                 $io->success(\sprintf('Upgrade diw from "%s" to latest version "%s"', $currentVersion, version()->getVersion()));
