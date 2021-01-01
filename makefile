@@ -19,8 +19,8 @@ symlink-dev: ## Links your current installation with the global binary
 	@echo "DIR="$(shell pwd)"" >> $(BREW_DIW_BINARY_PATH)
 	@echo "php "\$$DIR/src/DIW.php" \"\$$@"\" >> $(BREW_DIW_BINARY_PATH)
 
-reinstall: ## Reinstall the diw project via brew
-	brew reinstall diw
+upgrade: ## Upgrade the diw project via brew and removes the project symlink (for testing)
+	brew upgrade diw
 
 
 phpcs: ## Run phpcs (Codesniffer inspections)
