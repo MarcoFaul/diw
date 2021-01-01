@@ -16,12 +16,14 @@ use Illuminate\Container\Container;
 use Silly\Application;
 use Symfony\Component\Yaml\Yaml;
 
+$version = version()->getVersion();
+
 # load config file
 $globalConfig = Yaml::parseFile(__DIR__ . '/_config/global.config.yaml');
 $overrideFilePath = __DIR__ . '/_config/' . ConfigurationCommand::OVERRIDE_FILE_NAME;
+$globalConfig['version'] = $version;
 
-$fileSystem = new Symfony\Component\Filesystem\Filesystem();
-if ($fileSystem->exists($overrideFilePath) === true) {
+if (\file_exists($overrideFilePath) === true) {
     $overrideConfig = Yaml::parseFile(__DIR__ . '/_config/' . ConfigurationCommand::OVERRIDE_FILE_NAME);
     $_ENV = array_replace_recursive($globalConfig, $overrideConfig);
 } else {
@@ -30,7 +32,7 @@ if ($fileSystem->exists($overrideFilePath) === true) {
 
 $container = new Container();
 Container::setInstance($container);
-$app = new Application(APP_NAME, version()->getVersion());
+$app = new Application(APP_NAME, $version);
 
 # register and load all commands
 CommandLoader::load($app);
