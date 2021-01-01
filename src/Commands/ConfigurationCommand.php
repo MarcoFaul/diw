@@ -2,13 +2,13 @@
 
 namespace DIW\Commands;
 
-
 use Silly\Application;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Yaml\Yaml;
 
 $result = [];
@@ -51,8 +51,14 @@ class ConfigurationCommand implements CommandInterface
                 return;
             }
 
+            $overrideFilePath = __DIR__ . '/../_config/' . ConfigurationCommand::OVERRIDE_FILE_NAME;
+
+            if (\file_exists($overrideFilePath) === true) {
+                $overrideConfig = Yaml::parseFile(__DIR__ . '/../_config/' . ConfigurationCommand::OVERRIDE_FILE_NAME);
+            } else {
+                $overrideConfig = [];
+            }
             #1. get override yaml
-            $overrideConfig = Yaml::parseFile(__DIR__ . '/../_config/' . ConfigurationCommand::OVERRIDE_FILE_NAME);
             $explodedConfigKeys = \explode('.', $configConcatKey);
 
             # restructure our exploded config keys
@@ -68,7 +74,6 @@ class ConfigurationCommand implements CommandInterface
             \file_put_contents(__DIR__ . '/../_config/' . ConfigurationCommand::OVERRIDE_FILE_NAME, $yaml);
 
             $io->success(\sprintf('"%s" has been successfully changed to "%s" ', $configConcatKey, $newConfigValue));
-
         })->descriptions('Change default configuration');
     }
 

@@ -2,14 +2,10 @@
 
 namespace DIW\Commands;
 
-
-use Httpful\Request;
 use Silly\Application;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * @copyright 2020 dasistweb GmbH (https://www.dasistweb.de)
@@ -21,11 +17,11 @@ class TowerCommand implements CommandInterface
     {
         $app->command('tower', function (InputInterface $input, OutputInterface $output) {
             $io = new SymfonyStyle($input, $output);
-            $filesystem = new Filesystem();
 
             $io->writeln('Opening git tower');
-            if (!$filesystem->exists('/Applications/Tower.app/Contents/MacOS/gittower')) {
+            if (!\file_exists('/Applications/Tower.app/Contents/MacOS/gittower')) {
                 $io->error('tower command not found. Please install git tower by following the instructions provided here: https://www.git-tower.com/help/mac/integration/cli-tool');
+
                 return;
             }
 
@@ -34,7 +30,6 @@ class TowerCommand implements CommandInterface
             if (\strpos($output, 'fatal: Not a git repository') !== false) {
                 $io->error('Could not find git directory');
             }
-
         })->descriptions('Open closest git project in Tower');
     }
 }
