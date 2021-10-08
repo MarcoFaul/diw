@@ -17,25 +17,25 @@ $configKeys = [];
 /**
  * @copyright 2020 dasistweb GmbH (https://www.dasistweb.de)
  */
-class ConfigurationCommand implements CommandInterface
+class ConfigCommand implements CommandInterface
 {
     public const OVERRIDE_FILE_NAME = 'override.config.yaml';
-    public const OVERRIDE_TEMP_FILE_PATH = '/tmp/' . ConfigurationCommand::OVERRIDE_FILE_NAME;
+    public const OVERRIDE_TEMP_FILE_PATH = '/tmp/' . ConfigCommand::OVERRIDE_FILE_NAME;
 
     public static function command(Application $app): void
     {
-        $app->command('configuration:list', function (InputInterface $input, OutputInterface $output) {
+        $app->command('config:list', function (InputInterface $input, OutputInterface $output) {
             $io = new SymfonyStyle($input, $output);
 
             #@TODO: would be nice to have the overriden value and the default value
-            $io->table(['name', 'value'], ConfigurationCommand::getTableContent($_ENV));
+            $io->table(['name', 'value'], ConfigCommand::getTableContent($_ENV));
         })->descriptions('Returns the current configuration');
 
-        $app->command('configuration:configure', function (InputInterface $input, OutputInterface $output) {
+        $app->command('config:update', function (InputInterface $input, OutputInterface $output) {
             $io = new SymfonyStyle($input, $output);
 
             $helper = $this->getHelperSet()->get('question'); // @phpstan-ignore-line
-            $choices = ConfigurationCommand::getConfigKeys($_ENV);
+            $choices = ConfigCommand::getConfigKeys($_ENV);
             $updateConfigQuestion = new ChoiceQuestion('Select field to update', $choices, 0);
             $updateConfigQuestion->setErrorMessage('Your choice "%s" is invalid.');
             $updateConfigQuestion->setAutocompleterValues($choices);
@@ -51,10 +51,10 @@ class ConfigurationCommand implements CommandInterface
                 return;
             }
 
-            $overrideFilePath = __DIR__ . '/../_config/' . ConfigurationCommand::OVERRIDE_FILE_NAME;
+            $overrideFilePath = __DIR__ . '/../_config/' . ConfigCommand::OVERRIDE_FILE_NAME;
 
             if (\file_exists($overrideFilePath) === true) {
-                $overrideConfig = Yaml::parseFile(__DIR__ . '/../_config/' . ConfigurationCommand::OVERRIDE_FILE_NAME);
+                $overrideConfig = Yaml::parseFile(__DIR__ . '/../_config/' . ConfigCommand::OVERRIDE_FILE_NAME);
             } else {
                 $overrideConfig = [];
             }
@@ -71,7 +71,7 @@ class ConfigurationCommand implements CommandInterface
 
             #3 . array_replace_recursive
             $yaml = Yaml::dump(array_replace_recursive($overrideConfig, $restructuredConfig), 4);
-            \file_put_contents(__DIR__ . '/../_config/' . ConfigurationCommand::OVERRIDE_FILE_NAME, $yaml);
+            \file_put_contents(__DIR__ . '/../_config/' . ConfigCommand::OVERRIDE_FILE_NAME, $yaml);
 
             $io->success(\sprintf('"%s" has been successfully changed to "%s" ', $configConcatKey, $newConfigValue));
         })->descriptions('Change default configuration');
@@ -89,7 +89,7 @@ class ConfigurationCommand implements CommandInterface
             }
 
             if (\is_array($item) === true) {
-                ConfigurationCommand::getTableContent($item, $tmpPrefix);
+                ConfigCommand::getTableContent($item, $tmpPrefix);
             } else {
                 $result[] = [$tmpPrefix, $item];
             }
@@ -110,7 +110,7 @@ class ConfigurationCommand implements CommandInterface
             }
 
             if (\is_array($item) === true) {
-                ConfigurationCommand::getConfigKeys($item, $tmpPrefix);
+                ConfigCommand::getConfigKeys($item, $tmpPrefix);
             } else {
                 $configKeys[] = $tmpPrefix . ': ' . $item;
             }
