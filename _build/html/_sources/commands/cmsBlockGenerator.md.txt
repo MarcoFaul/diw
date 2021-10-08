@@ -26,5 +26,5 @@ If you just hit enter the current directory is used as the root project folder.
 ```
 
 ``` note::
-    *Core and *Theme suffix can be changed via the configuration:configure command
+    *Core and *Theme suffix can be changed via the config:update command
 ```

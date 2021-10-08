@@ -33,7 +33,7 @@ lexers['json'] = JsonLexer(startinline=True)
 # -- Project information -----------------------------------------------------
 
 project = 'DIW'
-copyright = '2020, Marco Faul'
+copyright = '2021, Marco Faul'
 author = 'Marco Faul'
 version = ''
 release = ''

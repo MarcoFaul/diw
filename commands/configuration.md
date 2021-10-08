@@ -3,9 +3,9 @@
 
 ### Configure
 
-All settings within the `configuration:list` override able. Just use the command below. 
+All settings within the `config:list` override able. Just use the command below. 
 
-        diw configuration:configure
+        diw config:update
         
 ``` note::
     Use numbers or just start typehint. Autocomplete is enabled
@@ -16,4 +16,4 @@ All settings within the `configuration:list` override able. Just use the command
 
 Will list all default and overridden configuration within a table
 
-        diw configuration:list
+        diw config:list
