@@ -68,7 +68,7 @@ function version(): Version
 
 function isDockerRunning(SymfonyStyle $io): bool
 {
-    $isDockerRunning = !(runCommand('docker info >/dev/null 2>&1;') !== '');
+    $isDockerRunning = runCommand('docker version > /dev/null') === '';
     if (!$isDockerRunning) {
         $io->error('Docker is not running. Please (re)start Docker.');
 

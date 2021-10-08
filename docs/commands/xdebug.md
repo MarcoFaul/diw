@@ -1,7 +1,7 @@
 ## Xdebug
 
 This Command enables, disables or returns the xdebug status from the `*__shop` container. 
-To change the container suffix use the `configuration:configure` command. 
+To change the container suffix use the `config:update` command. 
 
 ``` note::
     The shell command is tuned for Dockware - https://dockware.io/ - images.

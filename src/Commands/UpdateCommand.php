@@ -43,16 +43,16 @@ class UpdateCommand implements CommandInterface
 
                 # check if there is an override.config.xml
                 $filesystem = new Filesystem();
-                $overrideConfigFilePath = __DIR__ . '/../_config/' . ConfigurationCommand::OVERRIDE_FILE_NAME;
+                $overrideConfigFilePath = __DIR__ . '/../_config/' . ConfigCommand::OVERRIDE_FILE_NAME;
                 if ($filesystem->exists($overrideConfigFilePath)) {
-                    $filesystem->copy($overrideConfigFilePath, ConfigurationCommand::OVERRIDE_TEMP_FILE_PATH);
+                    $filesystem->copy($overrideConfigFilePath, ConfigCommand::OVERRIDE_TEMP_FILE_PATH);
                 }
 
                 # update via brew
                 quietly('brew upgrade ' . \strtolower(APP_NAME));
 
-                if ($filesystem->exists(ConfigurationCommand::OVERRIDE_TEMP_FILE_PATH)) {
-                    $filesystem->copy(ConfigurationCommand::OVERRIDE_TEMP_FILE_PATH, __DIR__ . '/../_config/' . ConfigurationCommand::OVERRIDE_FILE_NAME);
+                if ($filesystem->exists(ConfigCommand::OVERRIDE_TEMP_FILE_PATH)) {
+                    $filesystem->copy(ConfigCommand::OVERRIDE_TEMP_FILE_PATH, __DIR__ . '/../_config/' . ConfigCommand::OVERRIDE_FILE_NAME);
                 }
 
                 $io->success(\sprintf('Upgrade diw from "%s" to latest version "%s"', $currentVersion, version()->getVersion()));
