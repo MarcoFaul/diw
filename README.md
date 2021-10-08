@@ -3,7 +3,6 @@
 ![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/MarcoFaul/diw/Create%20release)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/MarcoFaul/diw)
-[![Inline docs](http://inch-ci.org/github/MarcoFaul/diw.svg?branch=master)](http://inch-ci.org/github/MarcoFaul/diw)
 
 `diw` is a CLI utility helper tool.
 
@@ -25,4 +24,4 @@ This work is licensed under the MIT license. See [LICENSE](https://github.com/Ma
 
 ## Author Information
 
-This project was started in 2020 by [Marco Faul](https://github.com/MarcoFaul).
+This project was started in 2021 by [Marco Faul](https://github.com/MarcoFaul).
