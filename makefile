@@ -29,7 +29,7 @@ phpcs: ## Run phpcs (Codesniffer inspections)
 phpcbf: ## Run phpcbf (Codesniffer fixer)
 	composer run-script phpcbf
 
-doc: ## Call Sphinx doc makefil
+doc: ## Call Sphinx doc makefile
 	$(MAKE) -C docs
 
 doc-html: ## Generate html files via Sphinx

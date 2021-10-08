@@ -18,7 +18,7 @@ jobs:
 
       - name: "🔖 Get Brew Version"
         id: get_brew_version
-        run: echo "BREW_VERSION=$(echo ${{ steps.get_version.outputs.VERSION }} | tr -d 'v')" >> $GITHUB_ENV
+        run: echo "BREW_VERSION=$(echo ${{ steps.get_version.outputs.VERSION }})" >> $GITHUB_ENV
 
       - name: "➕ Update version in version file"
         run: 'echo "${{ steps.get_version.outputs.VERSION }}" > version'
