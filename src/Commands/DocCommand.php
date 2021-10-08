@@ -15,12 +15,12 @@ class DocCommand implements CommandInterface
 
     public static function command(Application $app): void
     {
-        $app->command('doc', function (InputInterface $input, OutputInterface $output) {
+        $app->command('docs', function (InputInterface $input, OutputInterface $output) {
             $io = new SymfonyStyle($input, $output);
 
             $io->writeln('Opening documentation');
 
-            runAsUser('open https://diw-tool.netlify.app/');
+            passthruCommand('open https://diw-tool.netlify.app/');
         })->descriptions('Opens documentation within a browser');
     }
 }

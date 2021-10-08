@@ -49,13 +49,11 @@ class UpdateCommand implements CommandInterface
                 }
 
                 # update via brew
-                quietly('brew upgrade ' . \strtolower(APP_NAME));
+                echo execCommand('brew upgrade ' . \strtolower(APP_NAME));
 
                 if ($filesystem->exists(ConfigCommand::OVERRIDE_TEMP_FILE_PATH)) {
                     $filesystem->copy(ConfigCommand::OVERRIDE_TEMP_FILE_PATH, __DIR__ . '/../_config/' . ConfigCommand::OVERRIDE_FILE_NAME);
                 }
-
-                $io->success(\sprintf('Upgrade diw from "%s" to latest version "%s"', $currentVersion, version()->getVersion()));
             }
 
         })->descriptions(\sprintf('Update %s Utility', \strtolower(APP_NAME)));

@@ -24,7 +24,7 @@ class DockerShellCommand implements CommandInterface
             $containerSuffix = $_ENV['docker']['container']['suffix'];
             $containerUser = $_ENV['docker']['container']['user'];
 
-            $containerID = removeSpaces(run(\sprintf('docker ps -aqf "name=%s$"', $containerSuffix)));
+            $containerID = removeSpaces(execCommand(\sprintf('docker ps -aqf "name=%s$"', $containerSuffix)));
 
             if (!$containerID) {
                 $io->error('No docker container found for the container suffix: ' . $containerSuffix);

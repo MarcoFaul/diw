@@ -16,6 +16,11 @@ function quietly(string $command): void
     runCommand($command . ' > /dev/null 2>&1');
 }
 
+function execCommand(string $command)
+{
+    return shell_exec($command);
+}
+
 /**
  * Simple global function to run commands.
  *

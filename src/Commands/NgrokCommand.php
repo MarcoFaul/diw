@@ -27,7 +27,7 @@ class NgrokCommand implements CommandInterface
             run('open ' . NgrokCommand::TUNNEL_INSPECTION_URL);
 
             $command = \sprintf('%s/../../bin/ngrok http %s -host-header=rewrite ${*:2}', __DIR__, $url);
-            passthru($command);
+            passthruCommand($command);
         })->descriptions(
             'Starts a tunnel with the given hostname', [
                 'url' => 'Traffic Url that should be forwarded. e.g. localhost:80'

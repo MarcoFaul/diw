@@ -20,7 +20,7 @@ class PhpstormCommand implements CommandInterface
 
             $io->writeln('Opening PhpStorm');
 
-            runAsUser('open -a PhpStorm ./');
+            passthruCommand('open -a PhpStorm ./');
 
         })->descriptions('Open closest git project in Tower');
     }
