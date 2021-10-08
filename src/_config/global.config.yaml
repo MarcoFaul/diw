@@ -2,7 +2,7 @@ version: dev-9999
 docker:
   container:
     suffix: __shop
-    user:
+    user: dockware
 
 cms_block:
   suffix_plugin_name:
