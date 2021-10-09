@@ -1,7 +1,7 @@
 version: dev-9999
 docker:
   container:
-    suffix: __shop
+    suffix: shop
     user: dockware
 
 cms_block:

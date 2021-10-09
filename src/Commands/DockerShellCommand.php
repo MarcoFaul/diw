@@ -32,10 +32,15 @@ class DockerShellCommand implements CommandInterface
             }
 
             if ($containerUser) {
-                passthruCommand(\sprintf('docker exec -it -u %s %s bash', $containerUser, $containerID));
+                $command = \sprintf('docker exec -it -u %s %s bash', $containerUser, $containerID);
             } else {
-                passthruCommand(\sprintf('docker exec -it %s bash', $containerID));
+                $command = \sprintf('docker exec -it %s bash', $containerID);
             }
+
+            passthruCommand('echo ' . $command . '| pbcopy');
+//            passthruCommand($command); # disabled due to stdin shell output format bug
+
+            $io->success('Command has been copied to your clipboard. Insert and execute it');
 
         })->descriptions('Connects to the *__shop container');
     }
