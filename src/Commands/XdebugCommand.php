@@ -25,15 +25,15 @@ class XdebugCommand implements CommandInterface
 
             # output only the ID for the container name *__shop
             # remove whitespaces etc
-            $xdebugContainerID = removeSpaces(run(\sprintf('docker ps -aqf "name=%s$"', $containerSuffix)));
+            $xdebugContainerID = removeSpaces(execCommand(\sprintf('docker ps -aqf "name=%s$"', $containerSuffix)));
 
             if (!$enable && !$disable) {
-                $io->note(run(\sprintf('docker exec %s bash -c "cd ~/ && make status"', $xdebugContainerID)));
+                $io->note(execCommand(\sprintf('docker exec %s bash -c "cd ~/ && make status"', $xdebugContainerID)));
 
                 return;
             }
 
-            $xdebugEnabled = run(\sprintf('docker exec %s bash -c "php -v | grep Xdebug"', $xdebugContainerID)) !== '';
+            $xdebugEnabled = execCommand(\sprintf('docker exec %s bash -c "php -v | grep Xdebug"', $xdebugContainerID)) !== '';
 
             if ($xdebugEnabled && $enable) {
                 $io->error('Xdebug is already active');
@@ -48,10 +48,10 @@ class XdebugCommand implements CommandInterface
             }
 
             if ($enable) {
-                run(\sprintf('docker exec %s bash -c "cd ~/ && make xdebug-on"', $xdebugContainerID));
+                execCommand(\sprintf('docker exec %s bash -c "cd ~/ && make xdebug-on"', $xdebugContainerID));
                 $io->success('Successfully activated xdebug');
             } else {
-                run(\sprintf('docker exec %s bash -c "cd ~/ && make xdebug-off"', $xdebugContainerID));
+                execCommand(\sprintf('docker exec %s bash -c "cd ~/ && make xdebug-off"', $xdebugContainerID));
 
                 $io->success('Successfully deactivated xdebug');
             }
