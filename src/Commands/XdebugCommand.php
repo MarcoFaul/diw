@@ -33,7 +33,7 @@ class XdebugCommand implements CommandInterface
                 return;
             }
 
-            $xdebugEnabled = execCommand(\sprintf('docker exec %s bash -c "php -v | grep Xdebug"', $xdebugContainerID)) !== '';
+            $xdebugEnabled = execCommand(\sprintf('docker exec %s bash -c "php -v | grep Xdebug"', $xdebugContainerID)) !== null;
 
             if ($xdebugEnabled && $enable) {
                 $io->error('Xdebug is already active');
