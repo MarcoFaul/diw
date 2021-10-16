@@ -19,8 +19,8 @@ class DockerShellCommand implements CommandInterface
                 return;
             }
 
-            $containerSuffix = $_ENV['docker']['container']['suffix'];
-            $containerUser = $_ENV['docker']['container']['user'];
+            $containerSuffix = $_ENV['config']['docker']['container']['suffix'];
+            $containerUser = $_ENV['config']['docker']['container']['user'];
 
             $containerID = removeSpaces(execCommand(\sprintf('docker ps -aqf "name=%s$"', $containerSuffix)));
 

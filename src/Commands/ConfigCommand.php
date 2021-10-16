@@ -8,7 +8,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Yaml\Yaml;
 
 $result = [];
@@ -27,14 +26,14 @@ class ConfigCommand implements CommandInterface
             $io = new SymfonyStyle($input, $output);
 
             #@TODO: would be nice to have the overriden value and the default value
-            $io->table(['name', 'value'], ConfigCommand::getTableContent($_ENV));
+            $io->table(['name', 'value', 'default'], ConfigCommand::getTableContent($_ENV['config'], $_ENV['globalConfig']));
         })->descriptions('Returns the current configuration');
 
         $app->command('config:update', function (InputInterface $input, OutputInterface $output) {
             $io = new SymfonyStyle($input, $output);
 
             $helper = $this->getHelperSet()->get('question'); // @phpstan-ignore-line
-            $choices = ConfigCommand::getConfigKeys($_ENV);
+            $choices = ConfigCommand::getConfigKeys($_ENV['config']);
             $updateConfigQuestion = new ChoiceQuestion('Select field to update', $choices, 0);
             $updateConfigQuestion->setErrorMessage('Your choice "%s" is invalid.');
             $updateConfigQuestion->setAutocompleterValues($choices);
@@ -51,11 +50,11 @@ class ConfigCommand implements CommandInterface
             }
 
             if (\file_exists(ConfigCommand::OVERRIDE_CONFIG_FILE_PATH) === true) {
-                $overrideConfig = Yaml::parseFile(ConfigCommand::OVERRIDE_CONFIG_FILE_PATH);
+                $overrideConfig = (array) Yaml::parseFile(ConfigCommand::OVERRIDE_CONFIG_FILE_PATH);
             } else {
                 $overrideConfig = [];
             }
-            #1. get override yaml
+
             $explodedConfigKeys = \explode('.', $configConcatKey);
 
             # restructure our exploded config keys
@@ -66,7 +65,6 @@ class ConfigCommand implements CommandInterface
                 unset($restructuredConfig[$explodedConfigKeys[$i + 1]]);
             }
 
-            #3 . array_replace_recursive
             $yaml = Yaml::dump(array_replace_recursive($overrideConfig, $restructuredConfig), 4);
             \file_put_contents(ConfigCommand::OVERRIDE_CONFIG_FILE_PATH, $yaml);
 
@@ -74,11 +72,11 @@ class ConfigCommand implements CommandInterface
         })->descriptions('Change default configuration');
     }
 
-    public static function getTableContent(array $array, $prefix = ''): array
+    public static function getTableContent(array $config, $globalConfig, $prefix = ''): array
     {
         global $result;
 
-        foreach ($array as $name => $item) {
+        foreach ($config as $name => $item) {
             if ($prefix === '') {
                 $tmpPrefix = $name;
             } else {
@@ -86,9 +84,9 @@ class ConfigCommand implements CommandInterface
             }
 
             if (\is_array($item) === true) {
-                ConfigCommand::getTableContent($item, $tmpPrefix);
+                ConfigCommand::getTableContent($item, $globalConfig[$name], $tmpPrefix);
             } else {
-                $result[] = [$tmpPrefix, $item];
+                $result[] = [$tmpPrefix, $item, $globalConfig[$name]];
             }
         }
 

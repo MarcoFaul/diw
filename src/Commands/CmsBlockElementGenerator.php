@@ -61,13 +61,13 @@ class CmsBlockElementGenerator implements CommandInterface
                 return 1;
             }
 
-            $corePluginSuffix = $_ENV['cms_block']['suffix_plugin_name']['core'];
-            $themePluginSuffix = $_ENV['cms_block']['suffix_plugin_name']['theme'];
+            $corePluginSuffix = $_ENV['config']['cms_block']['suffix_plugin_name']['core'];
+            $themePluginSuffix = $_ENV['config']['cms_block']['suffix_plugin_name']['theme'];
             $pluginsFolder = $projectRootPath . 'custom/plugins/';
             $finder = new Finder();
             $finder->in($pluginsFolder);
-            $finder->name(\sprintf('*%s', $_ENV['cms_block']['suffix_plugin_name']['core']));
-            $finder->name(\sprintf('*%s', $_ENV['cms_block']['suffix_plugin_name']['theme']));
+            $finder->name(\sprintf('*%s', $_ENV['config']['cms_block']['suffix_plugin_name']['core']));
+            $finder->name(\sprintf('*%s', $_ENV['config']['cms_block']['suffix_plugin_name']['theme']));
             $finder->depth(0);
 
             $count = \iterator_count($finder);

@@ -19,14 +19,20 @@ class XdebugCommand implements CommandInterface
                 return;
             }
 
-            $containerSuffix = $_ENV['docker']['container']['suffix'];
+            $containerSuffix = $_ENV['config']['docker']['container']['suffix'];
 
             # output only the ID for the container name *__shop
             # remove whitespaces etc
-            $xdebugContainerID = removeSpaces(execCommand(\sprintf('docker ps -aqf "name=%s$"', $containerSuffix)));
+            $xdebugContainerID = removeSpaces((string)execCommand(\sprintf('docker ps -aqf "name=%s$"', $containerSuffix)));
+
+            if ($xdebugContainerID === '') {
+                $io->error(\sprintf('No container found with the suffix %s', $containerSuffix));
+
+                return;
+            }
 
             if (!$enable && !$disable) {
-                $io->note(execCommand(\sprintf('docker exec %s bash -c "cd ~/ && make status"', $xdebugContainerID)));
+                $io->note((string) execCommand(\sprintf('docker exec %s bash -c "cd ~/ && make status"', $xdebugContainerID)));
 
                 return;
             }

@@ -33,7 +33,7 @@ function table(array $headers = [], array $rows = [])
  */
 function output(string $output)
 {
-    if (isset($_ENV['APP_ENV']) && $_ENV['APP_ENV'] === 'testing') {
+    if (isset($_ENV['config']['APP_ENV']) && $_ENV['config']['APP_ENV'] === 'testing') {
         return;
     }
 
