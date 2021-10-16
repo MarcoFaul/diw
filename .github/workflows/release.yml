@@ -71,7 +71,6 @@ jobs:
           asset_name: diw-${{ env.BREW_VERSION }}.tar.gz
           asset_content_type: application/zip
 
-      ####### create a new homebrew formula version #######
       - name: "⬆️ Bump Homebrew formula"
         uses: mislav/bump-homebrew-formula-action@v1
         with:
@@ -81,7 +80,8 @@ jobs:
         env:
           COMMITTER_TOKEN: ${{ secrets.BREW_TOKEN }}
 
-      - uses: dev-drprasad/delete-older-releases@v0.2.0
+      - name: "⬇️️ Remove old releases"
+        uses: dev-drprasad/delete-older-releases@v0.2.0
         with:
           keep_latest: 5
         env:
