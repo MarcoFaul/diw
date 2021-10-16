@@ -14,13 +14,12 @@ use Symfony\Component\Yaml\Yaml;
 $result = [];
 $configKeys = [];
 
-/**
- * @copyright 2020 dasistweb GmbH (https://www.dasistweb.de)
- */
+
 class ConfigCommand implements CommandInterface
 {
-    public const OVERRIDE_FILE_NAME = 'override.config.yaml';
-    public const OVERRIDE_TEMP_FILE_PATH = '/tmp/' . ConfigCommand::OVERRIDE_FILE_NAME;
+    public const GLOBAL_CONFIG_FILE_NAME = 'global.config.yaml';
+    public const OVERRIDE_CONFIG_FILE_NAME = 'diw-override.config.yaml';
+    public const OVERRIDE_CONFIG_FILE_PATH = '/usr/local/etc/' . ConfigCommand::OVERRIDE_CONFIG_FILE_NAME;
 
     public static function command(Application $app): void
     {
@@ -51,10 +50,8 @@ class ConfigCommand implements CommandInterface
                 return;
             }
 
-            $overrideFilePath = __DIR__ . '/../_config/' . ConfigCommand::OVERRIDE_FILE_NAME;
-
-            if (\file_exists($overrideFilePath) === true) {
-                $overrideConfig = Yaml::parseFile(__DIR__ . '/../_config/' . ConfigCommand::OVERRIDE_FILE_NAME);
+            if (\file_exists(ConfigCommand::OVERRIDE_CONFIG_FILE_PATH) === true) {
+                $overrideConfig = Yaml::parseFile(ConfigCommand::OVERRIDE_CONFIG_FILE_PATH);
             } else {
                 $overrideConfig = [];
             }
@@ -71,7 +68,7 @@ class ConfigCommand implements CommandInterface
 
             #3 . array_replace_recursive
             $yaml = Yaml::dump(array_replace_recursive($overrideConfig, $restructuredConfig), 4);
-            \file_put_contents(__DIR__ . '/../_config/' . ConfigCommand::OVERRIDE_FILE_NAME, $yaml);
+            \file_put_contents(ConfigCommand::OVERRIDE_CONFIG_FILE_PATH, $yaml);
 
             $io->success(\sprintf('"%s" has been successfully changed to "%s" ', $configConcatKey, $newConfigValue));
         })->descriptions('Change default configuration');
@@ -103,6 +100,10 @@ class ConfigCommand implements CommandInterface
         global $configKeys;
 
         foreach ($array as $name => $item) {
+            if(\in_array($name, ['version', 'SHELL_VERBOSITY'], true)) {
+                continue;
+            }
+
             if ($prefix === '') {
                 $tmpPrefix = $name;
             } else {

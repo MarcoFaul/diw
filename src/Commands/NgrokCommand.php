@@ -9,9 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Process\Process;
 
-/**
- * @copyright 2020 dasistweb GmbH (https://www.dasistweb.de)
- */
+
 class NgrokCommand implements CommandInterface
 {
     public const TUNNEL_INSPECTION_URL = 'http://localhost:4040/inspect/http';

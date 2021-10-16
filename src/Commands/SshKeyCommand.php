@@ -9,9 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Filesystem\Filesystem;
 
-/**
- * @copyright 2020 dasistweb GmbH (https://www.dasistweb.de)
- */
+
 class SshKeyCommand implements CommandInterface
 {
     private const PUB_KEY_PATH = '~/.ssh/id_rsa.pub';

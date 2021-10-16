@@ -8,9 +8,7 @@ use Silly\Application;
 use Silly\Command\Command;
 use Symfony\Component\Finder\Finder;
 
-/**
- * @copyright 2020 dasistweb GmbH (https://www.dasistweb.de)
- */
+
 class CommandLoader
 {
     private const COMMAND_NAME_SPACE = 'DIW\\Commands\\';

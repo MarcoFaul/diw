@@ -32,9 +32,7 @@ define('BLOCK_TYPES', [
     BLOCK_TYPE_SPECIAL,
 ]);
 
-/**
- * @copyright 2020 dasistweb GmbH (https://www.dasistweb.de)
- */
+
 class CmsBlockElementGenerator implements CommandInterface
 {
     public static function command(Application $app): void
