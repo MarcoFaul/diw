@@ -20,7 +20,7 @@ class DockerUpCommand implements CommandInterface
             }
 
             # remove all containers
-            run('docker rm $(docker ps -aq) -f');
+            passthruCommand('docker rm $(docker ps -aq) -f');
 
             # start composer file
             passthruCommand('docker-compose up -d');
