@@ -19,15 +19,17 @@ use Symfony\Component\Yaml\Yaml;
 $version = version()->getVersion();
 
 # load config file
-$globalConfig = Yaml::parseFile(__DIR__ . '/_config/' . ConfigCommand::GLOBAL_CONFIG_FILE_NAME);
+$globalConfig = (array) Yaml::parseFile(__DIR__ . '/_config/' . ConfigCommand::GLOBAL_CONFIG_FILE_NAME);
 $globalConfig['version'] = $version;
+$_ENV['globalConfig'] = $globalConfig;
 
 if (\file_exists(ConfigCommand::OVERRIDE_CONFIG_FILE_PATH) === true) {
-    $overrideConfig = Yaml::parseFile(ConfigCommand::OVERRIDE_CONFIG_FILE_PATH);
-    $_ENV = array_replace_recursive($globalConfig, $overrideConfig);
+    $overrideConfig = (array) Yaml::parseFile(ConfigCommand::OVERRIDE_CONFIG_FILE_PATH);
+    $_ENV['config'] = array_replace_recursive($globalConfig, $overrideConfig);
 } else {
-    $_ENV = $globalConfig;
+    $_ENV['config'] = $globalConfig;
 }
+
 
 $container = new Container();
 Container::setInstance($container);
