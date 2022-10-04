@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     name: "⬆️ Bump Version"
     steps:
-      - uses: actions/checkout@v2.3.5
+      - uses: actions/checkout@v3.1.0
 
       - name: "🔖 Get Tag Version"
         id: get_version
