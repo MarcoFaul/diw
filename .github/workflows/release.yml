@@ -43,7 +43,7 @@ jobs:
       ####### release stuff starts here #######
       - name: "✏️ Generate changelog"
         id: changelog
-        uses: metcalfc/changelog-generator@v1.0.1
+        uses: metcalfc/changelog-generator@v4.0.1
         with:
           head-ref: ${{ env.BUMPED_COMMIT_SHA }}
           myToken: ${{ secrets.GITHUB_TOKEN }}
