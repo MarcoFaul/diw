@@ -81,7 +81,7 @@ jobs:
           COMMITTER_TOKEN: ${{ secrets.BREW_TOKEN }}
 
       - name: "⬇️️ Remove old releases"
-        uses: dev-drprasad/delete-older-releases@v0.2.0
+        uses: dev-drprasad/delete-older-releases@v0.2.1
         with:
           keep_latest: 5
         env:
